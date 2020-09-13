@@ -1,0 +1,1 @@
+Para abrir los diagramas utlizar la aplicación web draw.io
