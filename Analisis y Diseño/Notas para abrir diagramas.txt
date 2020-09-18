@@ -1,1 +1,6 @@
-Para abrir los diagramas utlizar la aplicación web draw.io
+7690-17-14228
+Lester Mendoza
+
+Notas:
+*Para abrir los diagramas utlizar la aplicación web draw.io
+*Pueda ser que no abre el prototipo, puede verlo en la siguiente ruta https://drive.google.com/file/d/1CqHQ5Y2rguSHF4Gb_yomVzZdtverjqDs/view?usp=sharing
