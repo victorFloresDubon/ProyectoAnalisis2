@@ -3,7 +3,6 @@ package com.equipoanalisis.SistemaVentasCatalogo.RestController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.equipoanalisis.SistemaVentasCatalogo.Repository.UsuarioRepository;
 import com.equipoanalisis.SistemaVentasCatalogo.entity.Usuario;
@@ -29,26 +27,31 @@ public class UsuarioRestController {
 	@Autowired
 	private UsuarioRepository usrRepo;
 	
-	
+	//API REST lista todos los usuarios
     @GetMapping("/usuarios")
     public List<Usuario> getUsuarios() {
         return usrRepo.findAll();
     }
     
-    @GetMapping(path = "/usuarios", params = {"id"})
-    public ResponseEntity<Optional<Usuario>> getUsuarioId(
-    		@RequestParam(value = "id", required = true) Long id
-    		)
-        {
-        Optional<Usuario> usuario = usrRepo.findById(id);
-        return ResponseEntity.ok().body(usuario);
+
+	//API REST lista usuarios por ID
+    @GetMapping("/usuarios/{id}")
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable(value = "id") Long id)
+        throws ResourceNotFoundException {
+        Usuario usr = usrRepo.findById(id)
+          .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+        return ResponseEntity.ok().body(usr);
     }
     
+
+	//API REST agrega un usuario nuevo
     @PostMapping("/usuarios")
     public Usuario createUsuario(@Validated @RequestBody Usuario usr) {
         return usrRepo.save(usr);
     }
     
+
+	//API REST actualiza los datos de un usuario por ID
     @PutMapping("/usuarios/{id}")
     public ResponseEntity<Usuario> updateUsuario(@PathVariable(value = "id") Long id,
          @Validated @RequestBody Usuario usuDetalles) throws ResourceNotFoundException {
@@ -62,6 +65,8 @@ public class UsuarioRestController {
         return ResponseEntity.ok(updateUsuario);
     }
     
+
+	//API REST elimina usuarios por ID
     @DeleteMapping("/usuarios/{id}")
     public Map<String, Boolean> deleteUsuario(@PathVariable(value = "id") Long id)
          throws ResourceNotFoundException {

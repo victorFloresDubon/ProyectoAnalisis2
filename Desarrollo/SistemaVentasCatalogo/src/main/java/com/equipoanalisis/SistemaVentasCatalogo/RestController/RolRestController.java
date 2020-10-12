@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,19 @@ public class RolRestController {
     @GetMapping("/roles")
     public List<Rol> getRoles() {
         return rolRepo.findAll();
+    }
+    
+    @GetMapping("/roles/{id}")
+    public ResponseEntity<Rol> getRolById(@PathVariable(value = "id") Long id)
+        throws ResourceNotFoundException {
+        Rol rol = rolRepo.findById(id)
+          .orElseThrow(() -> new ResourceNotFoundException("Rol no encontrado"));
+        return ResponseEntity.ok().body(rol);
+    }
+    
+    @PostMapping("/roles")
+    public Rol createRol(@Validated @RequestBody Rol rol) {
+        return rolRepo.save(rol);
     }
 	
     @PutMapping("/roles/{id}")
