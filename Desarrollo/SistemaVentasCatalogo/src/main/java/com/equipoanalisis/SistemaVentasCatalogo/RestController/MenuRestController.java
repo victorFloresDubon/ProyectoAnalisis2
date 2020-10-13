@@ -50,8 +50,8 @@ public class MenuRestController {
     	Menu menu = menuRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Menu No Encontrado"));
 
-        menu.setDescripcionMenu(MenuDetalle.getDescripcionMenu());
-        menu.setIdMenuPrincipal(MenuDetalle.getIdMenuPrincipal());
+        menu.setDescripcion(MenuDetalle.getDescripcion());
+        menu.setId_menu_padre(MenuDetalle.getId_menu_padre());
         menu.setUrl(MenuDetalle.getUrl());
         final Menu updateMenu = menuRepo.save(menu);
         return ResponseEntity.ok(updateMenu);

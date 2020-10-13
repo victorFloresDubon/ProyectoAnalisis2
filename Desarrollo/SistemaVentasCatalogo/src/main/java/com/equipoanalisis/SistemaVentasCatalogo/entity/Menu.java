@@ -11,39 +11,39 @@ public class Menu {
 
 	@Id
 	@Column(name = "id_menu")
-	private Long IdMenu;
+	private Long id_menu;
 	
 	@Column(name = "descripcion")
-	private String descripcionMenu;
+	private String descripcion;
 	
 	@Column(name = "id_menu_padre")
-	private String IdMenuPrincipal;
+	private Long id_menu_padre;
 	
 	@Column(name = "url")
 	private String url;
 
-	public Long getIdMenu() {
-		return IdMenu;
+	public Long getId_menu() {
+		return id_menu;
 	}
 
-	public void setIdMenu(Long idMenu) {
-		IdMenu = idMenu;
+	public void setId_menu(Long id_menu) {
+		this.id_menu = id_menu;
 	}
 
-	public String getDescripcionMenu() {
-		return descripcionMenu;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setDescripcionMenu(String descripcionMenu) {
-		this.descripcionMenu = descripcionMenu;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
-	public String getIdMenuPrincipal() {
-		return IdMenuPrincipal;
+	public Long getId_menu_padre() {
+		return id_menu_padre;
 	}
 
-	public void setIdMenuPrincipal(String idMenuPrincipal) {
-		IdMenuPrincipal = idMenuPrincipal;
+	public void setId_menu_padre(Long id_menu_padre) {
+		this.id_menu_padre = id_menu_padre;
 	}
 
 	public String getUrl() {
@@ -53,7 +53,7 @@ public class Menu {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+
 	
 
 }

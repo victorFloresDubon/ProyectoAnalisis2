@@ -11,27 +11,27 @@ public class CategoriaNegocio {
 
 	@Id
 	@Column(name = "id_categoria")
-	private Long IdCategoria;
+	private Long id_categoria;
 	
 	@Column(name = "des_categoria")
-	private String DescripcionCategoria;
+	private String des_categoria;
 
-	public Long getIdCategoria() {
-		return IdCategoria;
+	public Long getId_categoria() {
+		return id_categoria;
 	}
 
-	public void setIdCategoria(Long idCategoria) {
-		IdCategoria = idCategoria;
+	public void setId_categoria(Long id_categoria) {
+		this.id_categoria = id_categoria;
 	}
 
-	public String getDescripcionCategoria() {
-		return DescripcionCategoria;
+	public String getDes_categoria() {
+		return des_categoria;
 	}
 
-	public void setDescripcionCategoria(String descripcionCategoria) {
-		DescripcionCategoria = descripcionCategoria;
+	public void setDes_categoria(String des_categoria) {
+		this.des_categoria = des_categoria;
 	}
-	
+
 	
 
 }

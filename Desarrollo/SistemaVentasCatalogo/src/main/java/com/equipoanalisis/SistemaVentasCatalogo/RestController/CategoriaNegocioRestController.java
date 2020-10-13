@@ -50,7 +50,7 @@ public class CategoriaNegocioRestController {
     	CategoriaNegocio CatNeg = catRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Categoria No Encontrada"));
 
-    	CatNeg.setDescripcionCategoria(CatDetalle.getDescripcionCategoria());
+    	CatNeg.setDes_categoria(CatDetalle.getDes_categoria());
         final CategoriaNegocio updateCategoria = catRepo.save(CatNeg);
         return ResponseEntity.ok(updateCategoria);
     }
