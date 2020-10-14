@@ -22,6 +22,10 @@ public class Producto {
 	@Column(name = "precio")
 	private float precio;
 
+	@Column(name = "foto")
+	private String foto;
+
+	
 	public Long getId_producto() {
 		return id_producto;
 	}
@@ -52,6 +56,14 @@ public class Producto {
 
 	public void setPrecio(float precio) {
 		this.precio = precio;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	
 	

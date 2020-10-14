@@ -53,6 +53,7 @@ public class ProductoRestController {
     	prod.setId_tienda(ProductoDetalle.getId_tienda());
     	prod.setNombre(ProductoDetalle.getNombre());
     	prod.setPrecio(ProductoDetalle.getPrecio());
+    	prod.setFoto(ProductoDetalle.getFoto());
         final Producto updateProducto = prodRepo.save(prod);
         return ResponseEntity.ok(updateProducto);
     }
