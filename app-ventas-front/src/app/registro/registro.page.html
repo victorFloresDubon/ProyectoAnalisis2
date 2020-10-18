@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>
+        Registro
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre: </ion-label>
+        <ion-input [(ngModel)]="usuarios.nombre" type="text" name="nombre" class="form-control"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Apellido: </ion-label>
+        <ion-input [(ngModel)]="usuarios.apellido" type="text" name="apellido" class="form-control"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Dirección: </ion-label>
+        <ion-input [(ngModel)]="usuarios.direccion" type="text" name="direccion" class="form-control"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Correo: </ion-label>
+        <ion-input [(ngModel)]="usuarios.correo" type="email" name="correo" class="form-control"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Contraseña: </ion-label>
+        <ion-input [(ngModel)]="usuarios.contrasenia" type="password" name="contrasenia" class="form-control"></ion-input>
+      </ion-item>
+  
+      <ion-radio-group [(ngModel)]="usuarios.id_rol">
+        <ion-list-header>
+          <ion-label>Rol</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Cliente</ion-label>
+          <ion-icon name="basket"></ion-icon>
+          <ion-radio slot="start" color="success" value="1"></ion-radio>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Vendedor</ion-label>
+          <ion-icon name="home"></ion-icon>
+          <ion-radio slot="start" color="tertiary" value="2"></ion-radio>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Repartidor</ion-label>
+          <ion-icon name="bicycle"></ion-icon>
+          <ion-radio slot="start" color="danger" value="3"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+    </ion-list>
+    
+    <ion-button expand="full" color="secondary" (click)="registrarse(usuarios)">Registrarse</ion-button>
+
+
+
+</ion-content>

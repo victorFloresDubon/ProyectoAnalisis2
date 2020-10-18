@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>
+        Detalle de Tienda
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <img src="{{tiendas.foto}}" />
+    <ion-card-header>
+      <ion-card-title>{{tiendas.nombre}}</ion-card-title>
+      <ion-card-subtitle>Categoría: {{tiendas.id_categoria}}</ion-card-subtitle>
+      <ion-card-subtitle>Dirección: {{tiendas.direccion}}</ion-card-subtitle>
+      <ion-card-subtitle>Teléfono: {{tiendas.telefono}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="full" color="warning" (click)="Editar(tiendas)">Editar</ion-button>
+  <ion-button expand="full" color="danger" (click)="Borrar(tiendas)">Borrar</ion-button>
+
+</ion-content>
