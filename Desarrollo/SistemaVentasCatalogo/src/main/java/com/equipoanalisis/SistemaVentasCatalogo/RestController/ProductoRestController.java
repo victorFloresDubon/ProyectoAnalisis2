@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,18 +21,19 @@ import com.equipoanalisis.SistemaVentasCatalogo.Repository.ProductoRepository;
 import com.equipoanalisis.SistemaVentasCatalogo.entity.Producto;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/producto")
+@CrossOrigin("*")
 public class ProductoRestController {
 
 	@Autowired
 	private ProductoRepository prodRepo;
 	
-    @GetMapping("/producto")
+    @GetMapping
     public List<Producto> getProducto() {
         return prodRepo.findAll();
     }
     
-    @GetMapping("/producto/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Producto> getProductoById(@PathVariable(value = "id") Long id)
         throws ResourceNotFoundException {
     	Producto prod = prodRepo.findById(id)
@@ -39,12 +41,12 @@ public class ProductoRestController {
         return ResponseEntity.ok().body(prod);
     }
     
-    @PostMapping("/producto")
+    @PostMapping
     public Producto createProducto(@Validated @RequestBody Producto prod) {
         return prodRepo.save(prod);
     }
 	
-    @PutMapping("/producto/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Producto> updateProducto(@PathVariable(value = "id") Long id,
          @Validated @RequestBody Producto ProductoDetalle) throws ResourceNotFoundException {
     	Producto prod = prodRepo.findById(id)
@@ -58,7 +60,7 @@ public class ProductoRestController {
         return ResponseEntity.ok(updateProducto);
     }
     
-    @DeleteMapping("/producto/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteProducto(@PathVariable(value = "id") Long id)
          throws ResourceNotFoundException {
         Producto prod = prodRepo.findById(id)

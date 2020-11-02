@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,18 +21,19 @@ import com.equipoanalisis.SistemaVentasCatalogo.Repository.MenuRepository;
 import com.equipoanalisis.SistemaVentasCatalogo.entity.Menu;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/menu")
+@CrossOrigin("*")
 public class MenuRestController {
 
 	@Autowired
 	private MenuRepository menuRepo;
 	
-    @GetMapping("/menu")
+    @GetMapping
     public List<Menu> getMenu() {
         return menuRepo.findAll();
     }
     
-    @GetMapping("/menu/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Menu> getMenuById(@PathVariable(value = "id") Long id)
         throws ResourceNotFoundException {
         Menu menu = menuRepo.findById(id)
@@ -39,12 +41,12 @@ public class MenuRestController {
         return ResponseEntity.ok().body(menu);
     }
     
-    @PostMapping("/menu")
+    @PostMapping
     public Menu createMenu(@Validated @RequestBody Menu menu) {
         return menuRepo.save(menu);
     }
 	
-    @PutMapping("/menu/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Menu> updateMenu(@PathVariable(value = "id") Long id,
          @Validated @RequestBody Menu MenuDetalle) throws ResourceNotFoundException {
     	Menu menu = menuRepo.findById(id)
@@ -57,7 +59,7 @@ public class MenuRestController {
         return ResponseEntity.ok(updateMenu);
     }
     
-    @DeleteMapping("/menu/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteMenu(@PathVariable(value = "id") Long id)
          throws ResourceNotFoundException {
         Menu menu = menuRepo.findById(id)

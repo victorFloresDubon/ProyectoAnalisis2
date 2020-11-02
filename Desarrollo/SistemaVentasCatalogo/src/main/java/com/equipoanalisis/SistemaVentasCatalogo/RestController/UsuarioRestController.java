@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,21 +22,20 @@ import com.equipoanalisis.SistemaVentasCatalogo.entity.Usuario;
 
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("usuario")
+@CrossOrigin("*")
 public class UsuarioRestController {
 
 	@Autowired
 	private UsuarioRepository usrRepo;
 	
-	//API REST lista todos los usuarios
-    @GetMapping("/usuarios")
+    @GetMapping
     public List<Usuario> getUsuarios() {
         return usrRepo.findAll();
     }
     
 
-	//API REST lista usuarios por ID
-    @GetMapping("/usuarios/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Usuario> getUsuarioById(@PathVariable(value = "id") Long id)
         throws ResourceNotFoundException {
         Usuario usr = usrRepo.findById(id)
@@ -44,15 +44,13 @@ public class UsuarioRestController {
     }
     
 
-	//API REST agrega un usuario nuevo
-    @PostMapping("/usuarios")
+    @PostMapping
     public Usuario createUsuario(@Validated @RequestBody Usuario usr) {
         return usrRepo.save(usr);
     }
     
 
-	//API REST actualiza los datos de un usuario por ID
-    @PutMapping("/usuarios/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Usuario> updateUsuario(@PathVariable(value = "id") Long id,
          @Validated @RequestBody Usuario usuDetalles) throws ResourceNotFoundException {
     	Usuario employee = usrRepo.findById(id)
@@ -66,8 +64,7 @@ public class UsuarioRestController {
     }
     
 
-	//API REST elimina usuarios por ID
-    @DeleteMapping("/usuarios/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteUsuario(@PathVariable(value = "id") Long id)
          throws ResourceNotFoundException {
         Usuario user = usrRepo.findById(id)

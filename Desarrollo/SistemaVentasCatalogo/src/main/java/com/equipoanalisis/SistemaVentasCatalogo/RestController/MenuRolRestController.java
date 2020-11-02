@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,18 +21,20 @@ import com.equipoanalisis.SistemaVentasCatalogo.Repository.MenuRolRepository;
 import com.equipoanalisis.SistemaVentasCatalogo.entity.MenuRol;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/menuRol")
+@CrossOrigin("*")
+
 public class MenuRolRestController {
 
 	@Autowired
 	private MenuRolRepository menuRolRepo;
 	
-    @GetMapping("/menuRol")
+    @GetMapping
     public List<MenuRol> getMenuRol() {
         return menuRolRepo.findAll();
     }
     
-    @GetMapping("/menuRol/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<MenuRol> getMenuRolById(@PathVariable(value = "id") Long id)
         throws ResourceNotFoundException {
         MenuRol menuRol = menuRolRepo.findById(id)
@@ -39,12 +42,12 @@ public class MenuRolRestController {
         return ResponseEntity.ok().body(menuRol);
     }
     
-    @PostMapping("/menuRol")
+    @PostMapping
     public MenuRol createMenuRol(@Validated @RequestBody MenuRol menuRol) {
         return menuRolRepo.save(menuRol);
     }
 	
-    @PutMapping("/menuRol/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<MenuRol> updateMenu(@PathVariable(value = "id") Long id,
          @Validated @RequestBody MenuRol MenuRolDetalle) throws ResourceNotFoundException {
     	MenuRol menuRol = menuRolRepo.findById(id)
@@ -55,7 +58,7 @@ public class MenuRolRestController {
         return ResponseEntity.ok(updateMenuRol);
     }
     
-    @DeleteMapping("/menuRol/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteMenuRol(@PathVariable(value = "id") Long id)
          throws ResourceNotFoundException {
         MenuRol menuRol = menuRolRepo.findById(id)

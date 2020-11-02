@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,18 +21,20 @@ import com.equipoanalisis.SistemaVentasCatalogo.Repository.ParametrosRepository;
 import com.equipoanalisis.SistemaVentasCatalogo.entity.Parametro;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/parametros")
+@CrossOrigin("*")
+
 public class ParametrosRestController {
 
 	@Autowired
 	private ParametrosRepository parRepo;
 	
-    @GetMapping("/parametros")
+    @GetMapping
     public List<Parametro> getParametros() {
         return parRepo.findAll();
     }
     
-    @GetMapping("/parametros/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Parametro> getParametroById(@PathVariable(value = "id") Long id)
         throws ResourceNotFoundException {
     	Parametro par = parRepo.findById(id)
@@ -39,12 +42,12 @@ public class ParametrosRestController {
         return ResponseEntity.ok().body(par);
     }
     
-    @PostMapping("/parametros")
+    @PostMapping
     public Parametro createParametros(@Validated @RequestBody Parametro par) {
         return parRepo.save(par);
     }
 	
-    @PutMapping("/parametros/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Parametro> updateParametros(@PathVariable(value = "id") Long id,
          @Validated @RequestBody Parametro ParametrosDetalle) throws ResourceNotFoundException {
     	Parametro par = parRepo.findById(id)
@@ -57,7 +60,7 @@ public class ParametrosRestController {
         return ResponseEntity.ok(updateParametros);
     }
     
-    @DeleteMapping("/parametros/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteMenuRol(@PathVariable(value = "id") Long id)
          throws ResourceNotFoundException {
         Parametro par = parRepo.findById(id)

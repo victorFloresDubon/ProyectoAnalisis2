@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,18 +21,20 @@ import com.equipoanalisis.SistemaVentasCatalogo.Repository.CategoriaNegocioRepos
 import com.equipoanalisis.SistemaVentasCatalogo.entity.CategoriaNegocio;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/CategoriaNegocio")
+@CrossOrigin("*")
+
 public class CategoriaNegocioRestController {
 
 	@Autowired
 	private CategoriaNegocioRepository catRepo;
 	
-    @GetMapping("/CategoriaNegocios")
+    @GetMapping
     public List<CategoriaNegocio> getCategorias() {
         return catRepo.findAll();
     }
     
-    @GetMapping("/CategoriaNegocios/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CategoriaNegocio> getCategoriaNegocioById(@PathVariable(value = "id") Long id)
         throws ResourceNotFoundException {
     	CategoriaNegocio CatNeg = catRepo.findById(id)
@@ -39,12 +42,12 @@ public class CategoriaNegocioRestController {
         return ResponseEntity.ok().body(CatNeg);
     }
     
-    @PostMapping("/CategoriaNegocios")
+    @PostMapping
     public CategoriaNegocio createCatNegocio(@Validated @RequestBody CategoriaNegocio CatNeg) {
         return catRepo.save(CatNeg);
     }
     
-    @PutMapping("/CategoriaNegocios/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<CategoriaNegocio> updateCategoria(@PathVariable(value = "id") Long id,
          @Validated @RequestBody CategoriaNegocio CatDetalle) throws ResourceNotFoundException {
     	CategoriaNegocio CatNeg = catRepo.findById(id)
@@ -55,7 +58,7 @@ public class CategoriaNegocioRestController {
         return ResponseEntity.ok(updateCategoria);
     }
     
-    @DeleteMapping("/CategoriaNegocios/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteCategoria(@PathVariable(value = "id") Long id)
          throws ResourceNotFoundException {
     	CategoriaNegocio CatNeg = catRepo.findById(id)

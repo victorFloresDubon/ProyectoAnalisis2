@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,18 +21,19 @@ import com.equipoanalisis.SistemaVentasCatalogo.Repository.PedidoDetalleReposito
 import com.equipoanalisis.SistemaVentasCatalogo.entity.PedidoDetalle;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/pedidoDetalle")
+@CrossOrigin("*")
 public class PedidoDetalleRestController {
 
 	@Autowired
 	private PedidoDetalleRepository PedDetalleRepo;
 	
-    @GetMapping("/PedidoDetalle")
+    @GetMapping
     public List<PedidoDetalle> getPedidoDetalle() {
         return PedDetalleRepo.findAll();
     }
     
-    @GetMapping("/PedidoDetalle/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PedidoDetalle> getPedidoDetalleById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
         PedidoDetalle pedDet = PedDetalleRepo.findById(id)
@@ -39,12 +41,12 @@ public class PedidoDetalleRestController {
         return ResponseEntity.ok().body(pedDet);
     }
     
-    @PostMapping("/PedidoDetalle")
+    @PostMapping
     public PedidoDetalle createPedidoDetalle(@Validated @RequestBody PedidoDetalle pedDet) {
         return PedDetalleRepo.save(pedDet);
     }
     
-    @PutMapping("/PedidoDetalle/{id_linea}/{id_pedido}")
+    @PutMapping("/{id_linea}/{id_pedido}")
     public ResponseEntity<PedidoDetalle> updatePedidoDetalle(
         	@PathVariable(value = "id_linea") int id_linea,
         	@PathVariable(value = "id_pedido") int id_pedido,
@@ -62,7 +64,7 @@ public class PedidoDetalleRestController {
     		}
            	
     
-    @DeleteMapping("/PedidoDetalle/{id_linea}/{id_pedido}")
+    @DeleteMapping("/{id_linea}/{id_pedido}")
     public Map<String, Boolean> deletePedidoDetalle(
         	@PathVariable(value = "id_linea") int id_linea,
         	@PathVariable(value = "id_pedido") int id_pedido

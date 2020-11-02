@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,18 +21,19 @@ import com.equipoanalisis.SistemaVentasCatalogo.Repository.RolRepository;
 import com.equipoanalisis.SistemaVentasCatalogo.entity.Rol;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/rol")
+@CrossOrigin("*")
 public class RolRestController {
 
 	@Autowired
 	private RolRepository rolRepo;
 	
-    @GetMapping("/roles")
+    @GetMapping
     public List<Rol> getRoles() {
         return rolRepo.findAll();
     }
     
-    @GetMapping("/roles/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Rol> getRolById(@PathVariable(value = "id") Long id)
         throws ResourceNotFoundException {
         Rol rol = rolRepo.findById(id)
@@ -39,12 +41,12 @@ public class RolRestController {
         return ResponseEntity.ok().body(rol);
     }
     
-    @PostMapping("/roles")
+    @PostMapping
     public Rol createRol(@Validated @RequestBody Rol rol) {
         return rolRepo.save(rol);
     }
 	
-    @PutMapping("/roles/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Rol> updateRol(@PathVariable(value = "id") Long id,
          @Validated @RequestBody Rol RolDetalle) throws ResourceNotFoundException {
     	Rol rol = rolRepo.findById(id)
@@ -55,7 +57,7 @@ public class RolRestController {
         return ResponseEntity.ok(updateRol);
     }
     
-    @DeleteMapping("/roles/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteRol(@PathVariable(value = "id") Long id)
          throws ResourceNotFoundException {
         Rol rol = rolRepo.findById(id)
