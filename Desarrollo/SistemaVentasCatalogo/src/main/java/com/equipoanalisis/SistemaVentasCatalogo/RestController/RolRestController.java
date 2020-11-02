@@ -34,7 +34,7 @@ public class RolRestController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Rol> getRolById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<Rol> getRolById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
         Rol rol = rolRepo.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("Rol no encontrado"));
@@ -47,7 +47,7 @@ public class RolRestController {
     }
 	
     @PutMapping("/{id}")
-    public ResponseEntity<Rol> updateRol(@PathVariable(value = "id") Long id,
+    public ResponseEntity<Rol> updateRol(@PathVariable(value = "id") int id,
          @Validated @RequestBody Rol RolDetalle) throws ResourceNotFoundException {
     	Rol rol = rolRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Rol No Encontrado"));
@@ -58,7 +58,7 @@ public class RolRestController {
     }
     
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteRol(@PathVariable(value = "id") Long id)
+    public Map<String, Boolean> deleteRol(@PathVariable(value = "id") int id)
          throws ResourceNotFoundException {
         Rol rol = rolRepo.findById(id)
        .orElseThrow(() -> new ResourceNotFoundException("Rol No Encontrado"));

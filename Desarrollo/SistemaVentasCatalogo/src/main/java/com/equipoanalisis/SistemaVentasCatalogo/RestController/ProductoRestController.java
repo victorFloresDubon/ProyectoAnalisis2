@@ -34,7 +34,7 @@ public class ProductoRestController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Producto> getProductoById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<Producto> getProductoById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
     	Producto prod = prodRepo.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("Prodcuto no encontrado"));
@@ -47,7 +47,7 @@ public class ProductoRestController {
     }
 	
     @PutMapping("/{id}")
-    public ResponseEntity<Producto> updateProducto(@PathVariable(value = "id") Long id,
+    public ResponseEntity<Producto> updateProducto(@PathVariable(value = "id") int id,
          @Validated @RequestBody Producto ProductoDetalle) throws ResourceNotFoundException {
     	Producto prod = prodRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Producto No Encontrado"));
@@ -61,7 +61,7 @@ public class ProductoRestController {
     }
     
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteProducto(@PathVariable(value = "id") Long id)
+    public Map<String, Boolean> deleteProducto(@PathVariable(value = "id") int id)
          throws ResourceNotFoundException {
         Producto prod = prodRepo.findById(id)
        .orElseThrow(() -> new ResourceNotFoundException("Producto No Encontrado"));

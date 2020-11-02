@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.equipoanalisis.SistemaVentasCatalogo.entity.CategoriaNegocio;
 
 @Repository
-public interface CategoriaNegocioRepository extends JpaRepository<CategoriaNegocio, Long>{
+public interface CategoriaNegocioRepository extends JpaRepository<CategoriaNegocio, Integer>{
 
 }

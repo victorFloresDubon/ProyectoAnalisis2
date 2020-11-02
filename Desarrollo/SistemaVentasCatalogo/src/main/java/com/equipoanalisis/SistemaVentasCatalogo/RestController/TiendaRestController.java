@@ -34,7 +34,7 @@ public class TiendaRestController{
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Tienda> getTiendaById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<Tienda> getTiendaById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
         Tienda tienda = tiendaRepo.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("Tienda no encontrado"));
@@ -47,7 +47,7 @@ public class TiendaRestController{
     }
 	
     @PutMapping("/{id}")
-    public ResponseEntity<Tienda> updateTienda(@PathVariable(value = "id") Long id,
+    public ResponseEntity<Tienda> updateTienda(@PathVariable(value = "id") int id,
          @Validated @RequestBody Tienda TiendaDetalle) throws ResourceNotFoundException {
     	Tienda tienda = tiendaRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Tienda No Encontrado"));
@@ -63,7 +63,7 @@ public class TiendaRestController{
     }
     
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteTienda(@PathVariable(value = "id") Long id)
+    public Map<String, Boolean> deleteTienda(@PathVariable(value = "id") int id)
          throws ResourceNotFoundException {
         Tienda tienda = tiendaRepo.findById(id)
        .orElseThrow(() -> new ResourceNotFoundException("Tienda No Encontrado"));

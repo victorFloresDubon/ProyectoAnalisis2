@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.equipoanalisis.SistemaVentasCatalogo.entity.Menu;
 
 @Repository
-public interface MenuRepository extends JpaRepository<Menu, Long>{
+public interface MenuRepository extends JpaRepository<Menu, Integer>{
 
 }

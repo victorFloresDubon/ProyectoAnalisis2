@@ -14,7 +14,7 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pedido")
-	private Long id_pedido;
+	private int id_pedido;
 	
 	@Column(name = "id_usuario")
 	private Long id_usuario;
@@ -34,11 +34,11 @@ public class Pedido {
 	@Column(name = "entregado")
 	private Long entregado;
 
-	public Long getId_pedido() {
+	public int getId_pedido() {
 		return id_pedido;
 	}
 
-	public void setId_pedido(Long id_pedido) {
+	public void setId_pedido(int id_pedido) {
 		this.id_pedido = id_pedido;
 	}
 

@@ -36,7 +36,7 @@ public class UsuarioRestController {
     
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> getUsuarioById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
         Usuario usr = usrRepo.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
@@ -51,7 +51,7 @@ public class UsuarioRestController {
     
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> updateUsuario(@PathVariable(value = "id") Long id,
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable(value = "id") int id,
          @Validated @RequestBody Usuario usuDetalles) throws ResourceNotFoundException {
     	Usuario employee = usrRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Usuario No Encontrado"));
@@ -65,7 +65,7 @@ public class UsuarioRestController {
     
 
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteUsuario(@PathVariable(value = "id") Long id)
+    public Map<String, Boolean> deleteUsuario(@PathVariable(value = "id") int id)
          throws ResourceNotFoundException {
         Usuario user = usrRepo.findById(id)
        .orElseThrow(() -> new ResourceNotFoundException("Usuario No Encontrado"));

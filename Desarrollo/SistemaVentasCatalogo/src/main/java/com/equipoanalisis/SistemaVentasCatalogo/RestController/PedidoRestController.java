@@ -34,7 +34,7 @@ public class PedidoRestController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Pedido> getPedidoById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<Pedido> getPedidoById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
         Pedido pedido = pedidoRepo.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado"));
@@ -47,7 +47,7 @@ public class PedidoRestController {
     }
 	
     @PutMapping("/{id}")
-    public ResponseEntity<Pedido> updatePedido(@PathVariable(value = "id") Long id,
+    public ResponseEntity<Pedido> updatePedido(@PathVariable(value = "id") int id,
          @Validated @RequestBody Pedido pedidoDetalle) throws ResourceNotFoundException {
     	Pedido pedido = pedidoRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Pedido No Encontrado"));
@@ -63,7 +63,7 @@ public class PedidoRestController {
     }
     
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deletePedido(@PathVariable(value = "id") Long id)
+    public Map<String, Boolean> deletePedido(@PathVariable(value = "id") int id)
          throws ResourceNotFoundException {
         Pedido pedido = pedidoRepo.findById(id)
        .orElseThrow(() -> new ResourceNotFoundException("Pedido No Encontrado"));

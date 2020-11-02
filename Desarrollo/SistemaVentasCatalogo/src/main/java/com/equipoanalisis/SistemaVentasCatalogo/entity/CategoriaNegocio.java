@@ -14,16 +14,16 @@ public class CategoriaNegocio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_categoria")
-	private Long id_categoria;
+	private int id_categoria;
 	
 	@Column(name = "des_categoria")
 	private String des_categoria;
 
-	public Long getId_categoria() {
+	public int getId_categoria() {
 		return id_categoria;
 	}
 
-	public void setId_categoria(Long id_categoria) {
+	public void setId_categoria(int id_categoria) {
 		this.id_categoria = id_categoria;
 	}
 

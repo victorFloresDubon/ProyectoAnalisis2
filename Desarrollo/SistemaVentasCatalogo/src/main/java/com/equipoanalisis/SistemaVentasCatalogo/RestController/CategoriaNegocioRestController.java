@@ -35,7 +35,7 @@ public class CategoriaNegocioRestController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<CategoriaNegocio> getCategoriaNegocioById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<CategoriaNegocio> getCategoriaNegocioById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
     	CategoriaNegocio CatNeg = catRepo.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("Categoria no encontrada"));
@@ -48,7 +48,7 @@ public class CategoriaNegocioRestController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaNegocio> updateCategoria(@PathVariable(value = "id") Long id,
+    public ResponseEntity<CategoriaNegocio> updateCategoria(@PathVariable(value = "id") int id,
          @Validated @RequestBody CategoriaNegocio CatDetalle) throws ResourceNotFoundException {
     	CategoriaNegocio CatNeg = catRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Categoria No Encontrada"));
@@ -59,7 +59,7 @@ public class CategoriaNegocioRestController {
     }
     
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteCategoria(@PathVariable(value = "id") Long id)
+    public Map<String, Boolean> deleteCategoria(@PathVariable(value = "id") int id)
          throws ResourceNotFoundException {
     	CategoriaNegocio CatNeg = catRepo.findById(id)
        .orElseThrow(() -> new ResourceNotFoundException("Categoria No Encontrada"));

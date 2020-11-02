@@ -34,7 +34,7 @@ public class ProductoTiendaRestController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<ProductoTienda> getProductoTiendaById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<ProductoTienda> getProductoTiendaById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
     	ProductoTienda prodTienda = prodTiendaRepo.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("ProductoTienda no encontrado"));
@@ -47,7 +47,7 @@ public class ProductoTiendaRestController {
     }
 	
     @PutMapping("/{id}")
-    public ResponseEntity<ProductoTienda> updateProductoTienda(@PathVariable(value = "id") Long id,
+    public ResponseEntity<ProductoTienda> updateProductoTienda(@PathVariable(value = "id") int id,
          @Validated @RequestBody ProductoTienda ProductoTiendaDetalle) throws ResourceNotFoundException {
     	ProductoTienda prodTienda = prodTiendaRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("ProductoTienda No Encontrado"));
@@ -59,7 +59,7 @@ public class ProductoTiendaRestController {
     }
     
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteProductoTienda(@PathVariable(value = "id") Long id)
+    public Map<String, Boolean> deleteProductoTienda(@PathVariable(value = "id") int id)
          throws ResourceNotFoundException {
     	ProductoTienda prodTienda = prodTiendaRepo.findById(id)
        .orElseThrow(() -> new ResourceNotFoundException("ProductoTienda No Encontrado"));

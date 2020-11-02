@@ -14,7 +14,7 @@ public class Menu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_menu")
-	private Long id_menu;
+	private int id_menu;
 	
 	@Column(name = "descripcion")
 	private String descripcion;
@@ -25,11 +25,11 @@ public class Menu {
 	@Column(name = "url")
 	private String url;
 
-	public Long getId_menu() {
+	public int getId_menu() {
 		return id_menu;
 	}
 
-	public void setId_menu(Long id_menu) {
+	public void setId_menu(int id_menu) {
 		this.id_menu = id_menu;
 	}
 

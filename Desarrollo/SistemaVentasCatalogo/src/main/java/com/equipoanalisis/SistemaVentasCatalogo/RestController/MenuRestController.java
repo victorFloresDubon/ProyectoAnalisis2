@@ -34,7 +34,7 @@ public class MenuRestController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Menu> getMenuById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<Menu> getMenuById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
         Menu menu = menuRepo.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("Menu no encontrado"));
@@ -47,7 +47,7 @@ public class MenuRestController {
     }
 	
     @PutMapping("/{id}")
-    public ResponseEntity<Menu> updateMenu(@PathVariable(value = "id") Long id,
+    public ResponseEntity<Menu> updateMenu(@PathVariable(value = "id") int id,
          @Validated @RequestBody Menu MenuDetalle) throws ResourceNotFoundException {
     	Menu menu = menuRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Menu No Encontrado"));
@@ -60,7 +60,7 @@ public class MenuRestController {
     }
     
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteMenu(@PathVariable(value = "id") Long id)
+    public Map<String, Boolean> deleteMenu(@PathVariable(value = "id") int id)
          throws ResourceNotFoundException {
         Menu menu = menuRepo.findById(id)
        .orElseThrow(() -> new ResourceNotFoundException("Menu No Encontrado"));

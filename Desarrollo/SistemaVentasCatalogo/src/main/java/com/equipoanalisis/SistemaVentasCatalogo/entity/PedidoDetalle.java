@@ -5,17 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+
 @Entity
+@IdClass(PedidoDetallePK.class)
 @Table(name="pedido_detalle")
 public class PedidoDetalle {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_linea")
 	private int id_linea;
 	
+	@Id
 	@Column(name = "id_pedido")
 	private int id_pedido;
 
