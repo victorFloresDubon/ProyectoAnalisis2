@@ -33,6 +33,12 @@ public class ProductoRestController {
         return prodRepo.findAll();
     }
     
+    @GetMapping(value="/productoPorTienda/{id_tienda}")
+    public List<Producto> getUsuarioByUserandPsw(@PathVariable int id_tienda)
+         {
+    	return prodRepo.productosPorTienda(id_tienda);
+         }
+    
     @GetMapping("/{id}")
     public ResponseEntity<Producto> getProductoById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {

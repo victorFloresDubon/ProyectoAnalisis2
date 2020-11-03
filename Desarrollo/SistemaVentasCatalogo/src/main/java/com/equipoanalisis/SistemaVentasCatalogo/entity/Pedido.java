@@ -17,22 +17,22 @@ public class Pedido {
 	private int id_pedido;
 	
 	@Column(name = "id_usuario")
-	private Long id_usuario;
+	private int id_usuario;
 	
 	@Column(name = "id_tienda")
-	private Long id_tienda;
-	
-	@Column(name = "id_estado")
-	private Long id_estado;
+	private int id_tienda;
 	
 	@Column(name = "esdomicilio")
-	private Long esdomicilio;
+	private int esdomicilio;
 	
 	@Column(name = "listo")
-	private Long listo;
+	private int listo;
 	
 	@Column(name = "entregado")
-	private Long entregado;
+	private int entregado;
+
+	@Column(name = "id_usuario_repartidor")
+	private int id_usuario_repartidor;
 
 	public int getId_pedido() {
 		return id_pedido;
@@ -42,56 +42,54 @@ public class Pedido {
 		this.id_pedido = id_pedido;
 	}
 
-	public Long getId_usuario() {
+	public int getId_usuario() {
 		return id_usuario;
 	}
 
-	public void setId_usuario(Long id_usuario) {
+	public void setId_usuario(int id_usuario) {
 		this.id_usuario = id_usuario;
 	}
 
-	public Long getId_tienda() {
+	public int getId_tienda() {
 		return id_tienda;
 	}
 
-	public void setId_tienda(Long id_tienda) {
+	public void setId_tienda(int id_tienda) {
 		this.id_tienda = id_tienda;
 	}
 
-	public Long getId_estado() {
-		return id_estado;
-	}
-
-	public void setId_estado(Long id_estado) {
-		this.id_estado = id_estado;
-	}
-
-	public Long getEsdomicilio() {
+	public int getEsdomicilio() {
 		return esdomicilio;
 	}
 
-	public void setEsdomicilio(Long esdomicilio) {
+	public void setEsdomicilio(int esdomicilio) {
 		this.esdomicilio = esdomicilio;
 	}
 
-	public Long getListo() {
+	public int getListo() {
 		return listo;
 	}
 
-	public void setListo(Long listo) {
+	public void setListo(int listo) {
 		this.listo = listo;
 	}
 
-	public Long getEntregado() {
+	public int getEntregado() {
 		return entregado;
 	}
 
-	public void setEntregado(Long entregado) {
+	public void setEntregado(int entregado) {
 		this.entregado = entregado;
 	}
+
+	public int getId_usuario_repartidor() {
+		return id_usuario_repartidor;
+	}
+
+	public void setId_usuario_repartidor(int id_usuario_repartidor) {
+		this.id_usuario_repartidor = id_usuario_repartidor;
+	}
 	
-	
-	
-	
+
 	
 }

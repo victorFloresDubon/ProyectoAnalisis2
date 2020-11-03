@@ -33,6 +33,19 @@ public class PedidoRestController {
         return pedidoRepo.findAll();
     }
     
+    @GetMapping(value="/pedidosPorCliente/{id_usuario}")
+    public List<Pedido> getpedidosPorCliente(@PathVariable int id_usuario)
+         {
+    	return pedidoRepo.pedidosPorCliente(id_usuario);
+         }
+ 
+    @GetMapping(value="/pedidosPorRepartidor/{id_usuario_repartidor}")
+    public List<Pedido> getpedidosPorRepartidor(@PathVariable int id_usuario_repartidor)
+         {
+    	return pedidoRepo.pedidosPorRepartidor(id_usuario_repartidor);
+         }
+    
+    
     @GetMapping("/{id}")
     public ResponseEntity<Pedido> getPedidoById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
@@ -54,10 +67,10 @@ public class PedidoRestController {
 
     	pedido.setId_usuario(pedidoDetalle.getId_usuario());
     	pedido.setId_tienda(pedidoDetalle.getId_tienda());
-    	pedido.setId_estado(pedidoDetalle.getId_estado());
     	pedido.setEsdomicilio(pedidoDetalle.getEsdomicilio());
     	pedido.setListo(pedidoDetalle.getListo());
-    	pedido.setEntregado(pedidoDetalle.getEntregado());    	
+    	pedido.setEntregado(pedidoDetalle.getEntregado());
+    	pedido.setId_usuario_repartidor(pedidoDetalle.getId_usuario_repartidor());    	
     	final Pedido updatePedido = pedidoRepo.save(pedido);
         return ResponseEntity.ok(updatePedido);
     }

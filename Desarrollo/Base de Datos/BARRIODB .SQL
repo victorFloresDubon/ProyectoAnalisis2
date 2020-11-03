@@ -43,6 +43,7 @@ CREATE TABLE Pedido (
     entregado INTEGER,
     CONSTRAINT "pedido_PK" PRIMARY KEY (id_pedido)
 );
+
 insert into pedido (id_usuario, id_tienda, id_usuario_repartidor, esDomicilio, listo, entregado) values (1, 2, 1, 1, 0, 0);
 alter table pedido drop column id_repartidor;
 alter table pedido add column id_usuario_repartidor integer;
@@ -84,12 +85,8 @@ alter table tienda drop column foto;
 DELETE FROM tienda;
 
 CREATE TABLE Pedido_Detalle (
-    id_linea INTEGER NOT NULL,
     id_pedido INTEGER NOT NULL,
     id_producto INTEGER NOT NULL,
-    cantidad INTEGER NOT NULL,
-    total INTEGER NOT NULL,
-    observacion INTEGER,
     CONSTRAINT "pedido_detalle_PK" PRIMARY KEY (id_pedido,id_linea)
 );
 

@@ -33,6 +33,12 @@ public class TiendaRestController{
         return tiendaRepo.findAll();
     }
     
+    @GetMapping(value="/tiendaPorUsuario/{id_usuario}")
+    public List<Tienda> getTiendabyUser(@PathVariable int id_usuario)
+         {
+    	return tiendaRepo.tiendasPorUsuario(id_usuario);
+         }
+  
     @GetMapping("/{id}")
     public ResponseEntity<Tienda> getTiendaById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {

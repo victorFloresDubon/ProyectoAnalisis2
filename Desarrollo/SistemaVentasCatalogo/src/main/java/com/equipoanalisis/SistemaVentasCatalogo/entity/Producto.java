@@ -17,7 +17,7 @@ public class Producto {
 	private int id_producto;
 
 	@Column(name = "id_tienda")
-	private Long id_tienda;
+	private int id_tienda;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -37,11 +37,11 @@ public class Producto {
 		this.id_producto = id_producto;
 	}
 
-	public Long getId_tienda() {
+	public int getId_tienda() {
 		return id_tienda;
 	}
 
-	public void setId_tienda(Long id_tienda) {
+	public void setId_tienda(int id_tienda) {
 		this.id_tienda = id_tienda;
 	}
 

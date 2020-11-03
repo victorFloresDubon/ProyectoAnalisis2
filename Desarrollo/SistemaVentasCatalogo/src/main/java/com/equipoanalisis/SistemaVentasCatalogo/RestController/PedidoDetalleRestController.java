@@ -46,36 +46,27 @@ public class PedidoDetalleRestController {
         return PedDetalleRepo.save(pedDet);
     }
     
-    @PutMapping("/{id_linea}/{id_pedido}")
-    public ResponseEntity<PedidoDetalle> updatePedidoDetalle(
-        	@PathVariable(value = "id_linea") int id_linea,
-        	@PathVariable(value = "id_pedido") int id_pedido,
-        	@Validated @RequestBody PedidoDetalle PedDetalle
-    		) {
-    		PedidoDetalle ped = PedDetalleRepo.findByPedidoDetalle(id_linea, id_pedido);
- 
-            ped.setId_producto(PedDetalle.getId_producto());
-            ped.setCantidad(PedDetalle.getCantidad());
-            ped.setTotal(PedDetalle.getTotal());
-            ped.setObservacion(PedDetalle.getObservacion());   
-            final PedidoDetalle updatePedidoDetalle = PedDetalleRepo.save(ped);
-            return ResponseEntity.ok(updatePedidoDetalle);  
-               	
-    		}
-           	
+    @PutMapping("/{id}")
+    public ResponseEntity<PedidoDetalle> updatePedidoDetalle(@PathVariable(value = "id") int id,
+         @Validated @RequestBody PedidoDetalle PedidoDetalleDetalle) throws ResourceNotFoundException {
+    	PedidoDetalle pedidoDetalle = PedDetalleRepo.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("PedidoDetalle No Encontrado"));
+
+        pedidoDetalle.setId_producto(PedidoDetalleDetalle.getId_producto());
+        final PedidoDetalle updatePedidoDetalle = PedDetalleRepo.save(pedidoDetalle);
+        return ResponseEntity.ok(updatePedidoDetalle);
+    }
     
-    @DeleteMapping("/{id_linea}/{id_pedido}")
-    public Map<String, Boolean> deletePedidoDetalle(
-        	@PathVariable(value = "id_linea") int id_linea,
-        	@PathVariable(value = "id_pedido") int id_pedido
-        	) {
-    	PedidoDetalle ped = PedDetalleRepo.findByPedidoDetalle(id_linea, id_pedido);
-    	PedDetalleRepo.delete(ped);
+    @DeleteMapping("/{id}")
+    public Map<String, Boolean> deletePedidoDetalle(@PathVariable(value = "id") int id)
+         throws ResourceNotFoundException {
+        PedidoDetalle pedidoDetalle = PedDetalleRepo.findById(id)
+       .orElseThrow(() -> new ResourceNotFoundException("PedidoDetalle No Encontrado"));
+
+        PedDetalleRepo.delete(pedidoDetalle);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
     }
-    
-    
     
 }
