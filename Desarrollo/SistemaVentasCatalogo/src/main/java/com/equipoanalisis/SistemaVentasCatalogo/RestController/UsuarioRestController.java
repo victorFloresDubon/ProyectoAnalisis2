@@ -43,6 +43,12 @@ public class UsuarioRestController {
         return ResponseEntity.ok().body(usr);
     }
     
+    @GetMapping(value="/obtieneDatos/{usr}/{contrasenia}")
+    public List<Usuario> getUsuarioByUserandPsw(@PathVariable String usr, @PathVariable String contrasenia)
+         {
+    	return usrRepo.buscarDatosUsuario(usr, contrasenia);
+         }
+ 	
 
     @PostMapping
     public Usuario createUsuario(@Validated @RequestBody Usuario usr) {

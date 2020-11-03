@@ -31,8 +31,8 @@ public class Tienda {
 	@Column(name = "telefono")
 	private String telefono;
 	
-	@Column(name = "cuota_envio")
-	private float cuota_envio;
+	@Column(name = "foto")
+	private String foto;
 
 	public int getId_tienda() {
 		return id_tienda;
@@ -82,13 +82,15 @@ public class Tienda {
 		this.telefono = telefono;
 	}
 
-	public float getCuota_envio() {
-		return cuota_envio;
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setCuota_envio(float cuota_envio) {
-		this.cuota_envio = cuota_envio;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
+
+	
 	
 	
 	

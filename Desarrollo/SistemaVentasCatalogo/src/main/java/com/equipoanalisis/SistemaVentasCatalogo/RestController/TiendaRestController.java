@@ -57,7 +57,7 @@ public class TiendaRestController{
         tienda.setNombre(TiendaDetalle.getNombre());
         tienda.setDireccion(TiendaDetalle.getDireccion());
         tienda.setTelefono(TiendaDetalle.getTelefono());
-        tienda.setCuota_envio(TiendaDetalle.getCuota_envio());
+        tienda.setFoto(TiendaDetalle.getFoto());
         final Tienda updateTienda = tiendaRepo.save(tienda);
         return ResponseEntity.ok(updateTienda);
     }
