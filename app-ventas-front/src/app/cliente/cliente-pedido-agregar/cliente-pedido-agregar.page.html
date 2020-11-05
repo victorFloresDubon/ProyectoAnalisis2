@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true">
+  
+  <ion-header>
+    <ion-toolbar color="white">
+      <ion-buttons slot="start">
+        <ion-button (click)="Volver()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Categoria:</ion-label>
+      <ion-select [(ngModel)]="modelTienda.id_categoria">
+        <ion-select-option *ngFor="let categorianegocio of categorianegocios" [value]="categorianegocio.id_categoria">{{ categorianegocio.des_categoria }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" color="danger" (click)="Buscar(modelTienda)">Buscar</ion-button>
+
+  <ion-title>
+    Tiendas
+  </ion-title>
+
+  <ion-list>
+      <ion-item *ngFor="let tienda of tiendas" (click)="verProductos(tienda)">
+        <!--<ion-label>{{ tienda.id_tienda }}</ion-label>
+        <ion-label>{{ tienda.id_categoria }}</ion-label>
+        <ion-label>{{ tienda.id_usuario }}</ion-label>-->
+        <ion-avatar slot="start">
+          <ion-img [src]="tienda.foto"></ion-img>
+        </ion-avatar>
+        <ion-label>{{ tienda.nombre }}</ion-label>
+        <!--<ion-label>{{ tienda.direccion }}</ion-label>
+        <ion-label>{{ tienda.telefono }}</ion-label>
+        <ion-label>{{ tienda.cuota_envio }}</ion-label>-->
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="Borrar(tienda)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+        <ion-item-option (click)="Editar(tienda)" color="secondary">
+          <ion-icon name="create"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+  </ion-list>
+
+</ion-content>

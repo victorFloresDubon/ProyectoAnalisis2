@@ -11,24 +11,30 @@ import { AlertController, ToastController, LoadingController } from '@ionic/angu
 })
 export class RegistroPage implements OnInit {
 
-  usuarios = new Usuario();
-  constructor(private router:Router, private service:UsuarioService, private toastController: ToastController,
-    private loadingController: LoadingController, private alertController: AlertController) { }
+  usuarios:Usuario[];
+  modelUsuario = new Usuario();
 
-  async ngOnInit(){
-    const loading = await this.loadingController.create({
-      message: 'Cargando......',
-    });
-    await loading.present();
-      await loading.dismiss();
+  constructor(
+    private router:Router, 
+    private serviceUsuario:UsuarioService, 
+    private toastController: ToastController,
+    private loadingController: LoadingController, 
+    private alertController: AlertController
+    ) { }
+
+  ngOnInit(){
+    
   }
 
-  registrarse(usuario:Usuario){
-    this.service.createUsuario(usuario)
+  Registrarse(usuario:Usuario){
+    this.serviceUsuario.createUsuario(usuario)
     .subscribe(data=>{
-      //alert("Se agrego usuario con Exito...!!!");
-      this.router.navigate(["listarUsuarios"]);
+      this.router.navigate(["home"]);
     })
+  }
+
+  Volver(){
+    this.router.navigate(["home"]);
   }
 
 }

@@ -9,10 +9,6 @@ import { Router } from '@angular/router';
 export class MenuRepartidorComponent implements OnInit {
 
   constructor(private router:Router) { }
-  
-  Inicio(){
-    this.router.navigate(["repartidor-inicio"]);
-  }
 
   Pedidos(){
     this.router.navigate(["repartidor-pedido"]);
@@ -20,7 +16,7 @@ export class MenuRepartidorComponent implements OnInit {
 
   ngOnInit() {}
 
-  Home(){
+  Salir(){
     this.router.navigate(["home"]);
   }
 

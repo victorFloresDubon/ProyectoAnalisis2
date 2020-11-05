@@ -1,0 +1,38 @@
+<ion-content [fullscreen]="true">
+
+  <ion-header>
+    <ion-toolbar color="white">
+      <ion-buttons slot="start">
+        <ion-button (click)="Volver()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>
+        Agregar Pedido
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Tipo de entrega: </ion-label>
+        <ion-select [(ngModel)]="modelPedido.esdomicilio">
+          <ion-select-option [value]="1">A domicilio</ion-select-option>
+          <ion-select-option [value]="0">Pasar a recoger</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Si es a domicilio, elija a su repartidor: </ion-label>
+        <ion-select [(ngModel)]="modelPedido.id_usuario_repartidor">
+          <ion-select-option *ngFor="let usuario of usuarios" [value]="usuario.id_usuario">{{ usuario.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" color="danger" (click)="Guardar(modelPedido)">Realizar Pedido</ion-button>
+
+</ion-content>

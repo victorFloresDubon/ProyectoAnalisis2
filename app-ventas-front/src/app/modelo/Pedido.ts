@@ -1,9 +1,11 @@
 export class Pedido{
     constructor(){}
-    id_empleado:number;
+    id_pedido:number;
+    id_usuario:number;
     id_tienda:number;
-    p_nombre:String;
-    s_nombre:String;
-    p_apellido:String;
-    s_apellido:String;
+    listo:number;
+    entregado:number;
+    id_usuario_repartidor:number;
+    esdomicilio:number;
+    id_producto:number;
 }

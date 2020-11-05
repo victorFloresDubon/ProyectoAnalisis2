@@ -1,0 +1,32 @@
+<ion-content [fullscreen]="true">
+
+  <ion-header>
+    <ion-toolbar color="white">
+      <ion-buttons slot="start">
+        <ion-button (click)="Volver()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>
+        Entregar
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-list>
+    <ion-item>
+      <ion-label>Marcar como entregado: </ion-label>
+      <ion-select [(ngModel)]="modelPedido.entregado">
+        <ion-select-option [value]="1">Entregado</ion-select-option>
+        <ion-select-option [value]="0">No entregado</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" color="danger" (click)="Actualizar(modelPedido)">Actualizar</ion-button>
+
+</ion-content>

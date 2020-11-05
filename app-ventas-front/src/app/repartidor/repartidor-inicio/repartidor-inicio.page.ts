@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { AlertController, ToastController, LoadingController } from '@ionic/angular';
+import { Usuario } from '../../modelo/Usuario';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-repartidor-inicio',
@@ -10,16 +11,22 @@ import { AlertController, ToastController, LoadingController } from '@ionic/angu
 })
 export class RepartidorInicioPage implements OnInit {
 
-  constructor(private router:Router, private menu: MenuController, private toastController: ToastController,
-    private loadingController: LoadingController, private alertController: AlertController) { }
+  modelUsuario = new Usuario();
+  usuarios:Usuario[];
 
-    async ngOnInit(){
-      const loading = await this.loadingController.create({
-        message: 'Cargando......',
-      });
-      await loading.present();
-        await loading.dismiss();
-    }
+  constructor(
+    private router:Router, 
+    private menu: MenuController, 
+    private serviceUsuario:UsuarioService 
+  ) { }
+
+  ngOnInit(){
+    let id=localStorage.getItem("id_usuario");
+    this.serviceUsuario.getUsuarioId(+id)
+    .subscribe(data=>{
+      this.modelUsuario=data;
+    })
+  }
 
   openFirst() {
     this.menu.enable(true, 'first');

@@ -26,7 +26,7 @@ export class MenuVendedorComponent implements OnInit {
     this.router.navigate(["vendedor-pedido"]);
   }
 
-  Home(){
+  Salir(){
     this.router.navigate(["home"]);
   }
 

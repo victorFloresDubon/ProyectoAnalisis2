@@ -14,6 +14,7 @@ import { EditarEmpleadoComponent } from './Empleado/editar-empleado/editar-emple
 import { AgregarEmpleadoComponent } from './Empleado/agregar-empleado/agregar-empleado.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+//import { UsuarioService } from './services/usuario.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen,
+    //UsuarioService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -26,20 +26,21 @@ CREATE TABLE Rol (
     descripcion VARCHAR(20) NOT NULL,
     CONSTRAINT "rol_PK" PRIMARY KEY (id_rol)
 );
+insert into Rol (descripcion) values ('Cliente');
+insert into Rol (descripcion) values ('Vendedor');
+insert into Rol (descripcion) values ('Repartidor');
 
 CREATE TABLE Pedido (
     id_pedido SERIAL NOT NULL,
     id_usuario INTEGER NOT NULL,
     id_tienda INTEGER NOT NULL,
-    id_usuario_repartidor INTEGER,
-    esDomicilio INTEGER NOT NULL,
     listo INTEGER,
     entregado INTEGER,
+    id_usuario_repartidor INTEGER,
+    esdomicilio INTEGER NOT NULL,
+    id_producto INTEGER not null,
     CONSTRAINT "pedido_PK" PRIMARY KEY (id_pedido)
 );
-insert into pedido (id_usuario, id_tienda, id_usuario_repartidor, esDomicilio, listo, entregado) values (1, 2, 1, 1, 0, 0);
-alter table pedido drop column id_repartidor;
-alter table pedido add column id_usuario_repartidor integer;
 
 CREATE TABLE Producto (
     id_producto SERIAL NOT NULL,
@@ -49,10 +50,6 @@ CREATE TABLE Producto (
     foto VARCHAR(255) NOT NULL,
     CONSTRAINT "producto_PK" PRIMARY KEY (id_producto)
 );
-alter table producto add column foto varchar(255) not null;
-alter table producto drop column id_tienda;
-insert into producto (id_tienda, nombre, precio, foto) values (12, 'Tamarindo', 200, 'https://cdn2.cocinadelirante.com/sites/default/files/images/2018/04/mojarra-frita-al-mojo-de-ajo.jpg');
-insert into producto (id_tienda, nombre, precio, foto) values (12, 'Ponche', 100, 'https://sifu.unileversolutions.com/image/es-MX/recipe-topvisual/2/1260-709/hamburguesa-clasica-50425188.jpg');
 
 CREATE TABLE Categoria_Negocio (
     id_categoria SERIAL NOT NULL,
@@ -60,6 +57,7 @@ CREATE TABLE Categoria_Negocio (
     CONSTRAINT "categoria_negocio_PK" PRIMARY KEY (id_categoria)
 );
 insert into Categoria_Negocio (DES_CATEGORIA) values ('Restaurantes');
+insert into Categoria_Negocio (DES_CATEGORIA) values ('Servicios');
 insert into Categoria_Negocio (DES_CATEGORIA) values ('Entretenimiento');
 
 CREATE TABLE Tienda (
@@ -72,19 +70,10 @@ CREATE TABLE Tienda (
     foto VARCHAR(255) NOT NULL,
     CONSTRAINT "tienda_PK" PRIMARY KEY (id_tienda)
 );
-insert into Tienda (id_categoria, id_usuario, nombre, direccion, telefono, foto) values (1, 1, 'Doña Lencha', 'zona 3', '33333333', 'https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg');
-insert into Tienda (id_categoria, id_usuario, nombre, direccion, telefono, foto) values (1, 1, 'Bar Moe', 'zona 4', '22222222', 'https://dam.cocinafacil.com.mx/wp-content/uploads/2020/08/comida-arabe.jpg');
-alter table tienda drop column foto;
-DELETE FROM tienda;
 
 CREATE TABLE Pedido_Detalle (
-    id_linea INTEGER NOT NULL,
     id_pedido INTEGER NOT NULL,
     id_producto INTEGER NOT NULL,
-    cantidad INTEGER NOT NULL,
-    total INTEGER NOT NULL,
-    observacion INTEGER,
-    CONSTRAINT "pedido_detalle_PK" PRIMARY KEY (id_pedido,id_linea)
 );
 
 CREATE TABLE Menu (
@@ -111,7 +100,6 @@ CREATE TABLE Parametro (
     monto_entrega NUMERIC(12,2) NOT NULL
 );
 
-/** FOREIGN KEYS BARRIODB */
 alter table Usuario add constraint "usuario_rol_FK" foreign key (id_rol) references Rol (id_rol);
 
 alter table Pedido add constraint "usuario_pedido_FK" foreign key (id_usuario) references Usuario (id_usuario) on delete cascade;
@@ -134,15 +122,34 @@ alter table Menu_Rol add constraint "menu_rol_rol_FK" foreign key(id_rol) refere
 
 alter table Tienda add constraint "tienda_usuario_FK" foreign key(id_usuario) references Usuario (id_usuario);
 
-/** Data **/
-insert into rol (descripcion) values ('Cliente');
-insert into rol (descripcion) values ('Vendedor');
-insert into rol (descripcion) values ('Repartidor');
+create function actualizapedidodetalle() returns trigger
+as
+$$
+declare
+begin
+	--IF old.idproducto = idproductosalida THEN
+	insert into pedido_detalle (id_pedido, id_producto) values (NEW.id_pedido, NEW.id_producto);
+	--END IF;
+return NEW;
+end
+$$
+language plpgsql;
+create trigger tractualizapedidodetalle after insert on pedido
+for each row
+execute procedure actualizapedidodetalle();
 
-insert into usuario (id_rol ,nombre,apellido,direccion,correo,contrasenia) values (3, 'Victor', 'Flores', 'Z.8. San Miguel Petapa, Guatemala', 'vdubon@outlook.com','vdubon');
-insert into usuario (id_rol ,nombre,apellido,direccion,correo,contrasenia) values (1, 'Gari', 'Mendoza', 'Boca del Monte, Villa Canales, Guatemala', 'lester@gmail.com','gmendoza');
-insert into usuario (id_rol ,nombre,apellido,direccion,correo,contrasenia) values (2, 'Selvin', 'Castellanos', 'Z.5. Ciudad Capital', 'selvin@hotmail.com','scastellanos');
-
-
-
-
+create function actualizaproductotienda() returns trigger
+as
+$$
+declare
+begin
+	--IF old.idproducto = idproductosalida THEN
+	insert into producto_tienda (id_producto, id_tienda) values (NEW.id_producto, NEW.id_tienda);
+	--END IF;
+return NEW;
+end
+$$
+language plpgsql;
+create trigger tractualizaproductotienda after insert on producto
+for each row
+execute procedure actualizaproductotienda();

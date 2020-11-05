@@ -69,6 +69,50 @@ const routes: Routes = [
     path: 'cliente-pedido',
     loadChildren: () => import('./cliente/cliente-pedido/cliente-pedido.module').then( m => m.ClientePedidoPageModule)
   },
+  {
+    path: 'vendedor-tienda-agregar',
+    loadChildren: () => import('./vendedor/vendedor-tienda-agregar/vendedor-tienda-agregar.module').then( m => m.VendedorTiendaAgregarPageModule)
+  },
+  {
+    path: 'vendedor-producto-agregar',
+    loadChildren: () => import('./vendedor/vendedor-producto-agregar/vendedor-producto-agregar.module').then( m => m.VendedorProductoAgregarPageModule)
+  },
+  {
+    path: 'cliente-pedido-agregar',
+    loadChildren: () => import('./cliente/cliente-pedido-agregar/cliente-pedido-agregar.module').then( m => m.ClientePedidoAgregarPageModule)
+  },
+  {
+    path: 'cliente-pedido-detalle',
+    loadChildren: () => import('./cliente/cliente-pedido-detalle/cliente-pedido-detalle.module').then( m => m.ClientePedidoDetallePageModule)
+  },
+  {
+    path: 'cliente-producto',
+    loadChildren: () => import('./cliente/cliente-producto/cliente-producto.module').then( m => m.ClienteProductoPageModule)
+  },
+  {
+    path: 'cliente-producto-detalle',
+    loadChildren: () => import('./cliente/cliente-producto-detalle/cliente-producto-detalle.module').then( m => m.ClienteProductoDetallePageModule)
+  },
+  {
+    path: 'cliente-producto-agregar',
+    loadChildren: () => import('./cliente/cliente-producto-agregar/cliente-producto-agregar.module').then( m => m.ClienteProductoAgregarPageModule)
+  },
+  {
+    path: 'repartidor-pedido-detalle',
+    loadChildren: () => import('./repartidor/repartidor-pedido-detalle/repartidor-pedido-detalle.module').then( m => m.RepartidorPedidoDetallePageModule)
+  },
+  {
+    path: 'repartidor-pedido-entregar',
+    loadChildren: () => import('./repartidor/repartidor-pedido-entregar/repartidor-pedido-entregar.module').then( m => m.RepartidorPedidoEntregarPageModule)
+  },
+  {
+    path: 'vendedor-pedido-detalle',
+    loadChildren: () => import('./vendedor/vendedor-pedido-detalle/vendedor-pedido-detalle.module').then( m => m.VendedorPedidoDetallePageModule)
+  },
+  {
+    path: 'vendedor-pedido-editar',
+    loadChildren: () => import('./vendedor/vendedor-pedido-editar/vendedor-pedido-editar.module').then( m => m.VendedorPedidoEditarPageModule)
+  },
 ];
 
 @NgModule({

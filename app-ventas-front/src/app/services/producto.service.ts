@@ -23,6 +23,14 @@ export class ProductoService {
     return this.http.get<Producto>(this.url+"/"+id);
   }
 
+  getProductoUsuario(id:number){
+    return this.http.get<Producto[]>(this.url+"/buscarusuario/"+id);
+  }
+
+  getProductoTienda(id:number){
+    return this.http.get<Producto[]>(this.url+"/productoPorTienda/"+id);
+  }
+
   updateProducto(producto:Producto){
     return this.http.put<Producto>(this.url+"/"+producto.id_producto,producto);
   }

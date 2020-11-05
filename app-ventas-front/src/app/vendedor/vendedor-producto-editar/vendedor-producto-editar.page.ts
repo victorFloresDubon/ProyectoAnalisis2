@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Producto } from '../../modelo/Producto';
 import { ProductoService } from '../../services/producto.service'
 import { Router } from '@angular/router';
-import { AlertController, ToastController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-vendedor-producto-editar',
@@ -32,6 +31,10 @@ export class VendedorProductoEditarPage implements OnInit {
       this.productos=data;
       this.router.navigate(["vendedor-producto"]);
     })
+  }
+
+  Volver(){
+    this.router.navigate(["vendedor-producto-detalle"]);
   }
 
 }

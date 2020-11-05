@@ -1,0 +1,49 @@
+<ion-content [fullscreen]="true">
+
+  <ion-header>
+    <ion-toolbar color="white">
+      <ion-buttons slot="start">
+        <ion-button (click)="Volver()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>
+        Detalle de Pedido
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <img src="{{modelProducto.foto}}" />
+    <ion-card-header>
+      <ion-card-title>{{modelProducto.nombre}}</ion-card-title>
+      <ion-card-subtitle>Tienda: {{modelTienda.nombre}}</ion-card-subtitle>
+      <ion-card-subtitle>Precio: Q{{modelProducto.precio}}</ion-card-subtitle>
+      <ion-card-subtitle [ngSwitch]="modelPedido.listo">
+        <div *ngSwitchCase="0">Listo: No</div>
+        <div *ngSwitchCase="1">Listo: Si</div>
+        <div *ngSwitchDefault>-</div>
+      </ion-card-subtitle>
+      <ion-card-subtitle [ngSwitch]="modelPedido.entregado">
+        <div *ngSwitchCase="0">Entregado: No</div>
+        <div *ngSwitchCase="1">Entregado: Si</div>
+        <div *ngSwitchDefault>-</div>
+      </ion-card-subtitle>
+      <ion-card-subtitle>Repartidor: {{modelUsuario.nombre}}</ion-card-subtitle>
+      <ion-card-subtitle [ngSwitch]="modelPedido.esdomicilio">
+        <div *ngSwitchCase="0">Tipo de Entrega: Pasar a traer</div>
+        <div *ngSwitchCase="1">Tipo de Entrega: A domicilio</div>
+        <div *ngSwitchDefault>-</div>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="full" color="danger" (click)="Entregar(modelProducto)">Entregar</ion-button>
+
+</ion-content>

@@ -29,6 +29,14 @@ export class TiendaService {
     return this.http.get<Tienda>(this.url+"/"+id);
   }
 
+  getTiendaUsuario(id:number){
+    return this.http.get<Tienda[]>(this.url+"/buscarusuario/"+id);
+  }
+
+  getTiendaCategoria(id:number){
+    return this.http.get<Tienda[]>(this.url+"/buscarcategoria/"+id);
+  }
+
   updateTienda(tienda:Tienda){
     return this.http.put<Tienda>(this.url+"/"+tienda.id_tienda,tienda);
   }

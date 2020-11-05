@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Tienda } from '../../modelo/Tienda';
 import { TiendaService } from '../../services/tienda.service'
 import { Router } from '@angular/router';
-import { AlertController, ToastController, LoadingController } from '@ionic/angular';
+import { CategoriaNegocio } from '../../modelo/CategoriaNegocio';
+import { CategoriaNegocioService } from '../../services/categoria-negocio.service';
 
 @Component({
   selector: 'app-vendedor-tienda-editar',
@@ -11,30 +12,49 @@ import { AlertController, ToastController, LoadingController } from '@ionic/angu
 })
 export class VendedorTiendaEditarPage implements OnInit {
 
-  
-  tiendas = new Tienda();
-  constructor(private router:Router, private service: TiendaService) { }
+  modelCategoriaNegocio = new CategoriaNegocio();
+  modelTienda = new Tienda();
+  tiendas:Tienda[];
+  categorianegocios:CategoriaNegocio[];
+
+  constructor(
+    private router:Router, 
+    private serviceTienda: TiendaService,
+    private serviceCategoriaNegocio:CategoriaNegocioService
+    ) { }
 
   ngOnInit(): void {
     this.ListarEditar();
+
+    this.serviceCategoriaNegocio.getCategoriaNegocios()
+    .subscribe(data=>{
+      this.categorianegocios = data;
+    })
+
+    this.serviceTienda.getTiendas()
+    .subscribe(data=>{
+      this.tiendas = data;
+    })
   }
 
   ListarEditar(){
-    let id=localStorage.getItem("id");
-    this.service.getTiendaId(+id)
+    let id=localStorage.getItem("id_tienda");
+    this.serviceTienda.getTiendaId(+id)
     .subscribe(data=>{
-      this.tiendas=data;
+      this.modelTienda=data;
     })
   }
 
   Actualizar(tienda:Tienda){
-    this.service.updateTienda(tienda)
+    this.serviceTienda.updateTienda(tienda)
     .subscribe(data=>{
-      this.tiendas=data;
+      this.modelTienda=data;
       this.router.navigate(["vendedor-tienda"]);
     })
   }
 
-  
+  Volver(){
+    this.router.navigate(["vendedor-tienda-detalle"]);
+  }
 
 }

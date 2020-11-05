@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../modelo/Usuario';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../services/usuario.service';
 import { MenuController } from '@ionic/angular';
 import { AlertController, ToastController, LoadingController } from '@ionic/angular';
 
@@ -10,8 +12,17 @@ import { AlertController, ToastController, LoadingController } from '@ionic/angu
 })
 export class HomePage {
 
-  constructor(private router:Router, private menu: MenuController, private toastController: ToastController,
-    private loadingController: LoadingController, private alertController: AlertController) { }
+  usuarios:Usuario[];
+  modelUsuario = new Usuario();
+
+  constructor(
+    private router:Router, 
+    private menu: MenuController, 
+    private toastController: ToastController,
+    private loadingController: LoadingController, 
+    private serviceUsuario:UsuarioService, 
+    private alertController: AlertController
+    ) { }
 
     async ngOnInit(){
       const loading = await this.loadingController.create({
@@ -39,8 +50,24 @@ export class HomePage {
     this.menu.toggle();
   }
 
-  Ingresar(){
-    this.router.navigate(["listarCategorias"]);
+  Ingresar(usuario:Usuario){
+    localStorage.setItem("correo", usuario.correo.toString());
+    let correo=localStorage.getItem("correo");
+    localStorage.setItem("contrasenia", usuario.contrasenia.toString());
+    let contrasenia=localStorage.getItem("contrasenia");
+    
+    this.serviceUsuario.getUsuarioLogin(correo, contrasenia)
+    .subscribe(data=>{
+      this.modelUsuario = data;
+      localStorage.setItem("id_usuario", this.modelUsuario.id_usuario.toString());
+      if(this.modelUsuario.id_rol == 1){
+        this.router.navigate(["cliente-inicio"]);
+      }else if(this.modelUsuario.id_rol == 2){
+        this.router.navigate(["vendedor-inicio"]);
+      }else if(this.modelUsuario.id_rol == 3){
+        this.router.navigate(["repartidor-inicio"]);
+      }
+    })
   }
 
   Registrar(){

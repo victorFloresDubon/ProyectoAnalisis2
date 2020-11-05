@@ -18,7 +18,7 @@ export class MenuClienteComponent implements OnInit {
     this.router.navigate(["cliente-pedido"]);
   }
 
-  Home(){
+  Salir(){
     this.router.navigate(["home"]);
   }
 

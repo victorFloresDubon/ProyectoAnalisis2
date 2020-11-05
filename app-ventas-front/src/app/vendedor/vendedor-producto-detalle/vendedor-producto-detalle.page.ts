@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../../services/producto.service';
 import { Producto } from '../../modelo/Producto';
 import { Router } from '@angular/router';
+import { TiendaService } from '../../services/tienda.service';
+import { Tienda } from '../../modelo/Tienda';
 
 @Component({
   selector: 'app-vendedor-producto-detalle',
@@ -10,10 +12,16 @@ import { Router } from '@angular/router';
 })
 export class VendedorProductoDetallePage implements OnInit {
 
-  productosVector:Producto[];
-  productos = new Producto();
+  productos:Producto[];
+  modelProducto = new Producto();
+  modelTienda = new Tienda();
+  tiendas:Tienda[];
 
-  constructor(private router:Router, private service: ProductoService) { }
+  constructor(
+    private router:Router, 
+    private serviceTienda: TiendaService,
+    private service: ProductoService
+  ) { }
 
   ngOnInit(): void {
     this.Detallar();
@@ -23,7 +31,11 @@ export class VendedorProductoDetallePage implements OnInit {
     let id=localStorage.getItem("id");
     this.service.getProductoId(+id)
     .subscribe(data=>{
-      this.productos=data;
+      this.modelProducto=data;
+      this.serviceTienda.getTiendaId(this.modelProducto.id_tienda)
+      .subscribe(data=>{
+        this.modelTienda=data;
+      })
     })
   }
 
@@ -38,6 +50,10 @@ export class VendedorProductoDetallePage implements OnInit {
   Editar(producto:Producto):void{
     localStorage.setItem("id", producto.id_producto.toString());
     this.router.navigate(["vendedor-producto-editar"]);
+  }
+
+  Volver(){
+    this.router.navigate(["vendedor-producto"]);
   }
 
 }

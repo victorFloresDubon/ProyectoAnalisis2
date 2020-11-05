@@ -1,12 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
+
+  <ion-header>
+    <ion-toolbar color="white">
+      <ion-buttons slot="start">
+        <ion-button (click)="Volver()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
   
   <ion-header>
     <ion-toolbar color="dark">
@@ -17,16 +19,16 @@
   </ion-header>
 
   <ion-card>
-    <img src="{{productos.foto}}" />
+    <img src="{{modelProducto.foto}}" />
     <ion-card-header>
-      <ion-card-title>{{productos.nombre}}</ion-card-title>
-      <ion-card-subtitle>Tienda: {{productos.id_tienda}}</ion-card-subtitle>
-      <ion-card-subtitle>Precio: {{productos.precio}}</ion-card-subtitle>
+      <ion-card-title>{{modelProducto.nombre}}</ion-card-title>
+      <ion-card-subtitle>Tienda: {{modelTienda.nombre}}</ion-card-subtitle>
+      <ion-card-subtitle>Precio: {{modelProducto.precio}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
     </ion-card-content>
   </ion-card>
-  <ion-button expand="full" color="warning" (click)="Editar(productos)">Editar</ion-button>
-  <ion-button expand="full" color="danger" (click)="Borrar(productos)">Borrar</ion-button>
+  <ion-button expand="full" color="warning" (click)="Editar(modelProducto)">Editar</ion-button>
+  <ion-button expand="full" color="danger" (click)="Borrar(modelProducto)">Borrar</ion-button>
 
 </ion-content>

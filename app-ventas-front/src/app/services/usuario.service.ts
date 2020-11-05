@@ -23,6 +23,14 @@ export class UsuarioService {
     return this.http.get<Usuario>(this.url+"/"+id);
   }
 
+  getUsuarioLogin(correo:String, contrasenia:String){
+    return this.http.get<Usuario>(this.url+"/buscarlogin/"+correo+"/"+contrasenia);
+  }
+
+  getUsuarioRepartidores(){
+    return this.http.get<Usuario[]>(this.url+"/repartidor");
+  }
+
   updateUsuario(usuario:Usuario){
     return this.http.put<Usuario>(this.url+"/"+usuario.id_usuario,usuario);
   }
@@ -30,4 +38,5 @@ export class UsuarioService {
   deleteUsuario(usuario:Usuario){
     return this.http.delete<Usuario>(this.url+"/"+usuario.id_usuario);
   }
+  
 }

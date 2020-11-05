@@ -1,20 +1,3 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-
-    </ion-title>
-    <ion-buttons slot="start">
-
-      <ion-button (click)="toggleMenu()">
-        <ion-icon slot="icon-only" name="menu"></ion-icon>
-      </ion-button>
-
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-<app-menu></app-menu>
-<ion-router-outlet id="main"></ion-router-outlet>
-
 <ion-content [fullscreen]="true">
 
   <div id="container">
@@ -27,16 +10,16 @@
 
   <ion-item>
     <ion-label>Correo: </ion-label>
-    <ion-input type="email" name="correo"></ion-input>
+    <ion-input type="email" name="correo" [(ngModel)] = "modelUsuario.correo"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Contraseña: </ion-label>
-    <ion-input type="password" name="contrasenia"></ion-input>
+    <ion-input type="password" name="contrasenia" [(ngModel)] = "modelUsuario.contrasenia"></ion-input>
   </ion-item>
-  <ion-button expand="block" color="secondary" (click)="Ingresar()">Ingresar</ion-button>
+  <ion-button expand="block" color="danger" (click)="Ingresar(modelUsuario)">Ingresar</ion-button>
+  o
   <br>
-  <br>
-  <ion-button expand="block" color="secondary" (click)="Registrar()">Registrarme</ion-button>
+  <ion-button expand="block" color="dark" (click)="Registrar()">Registrarme</ion-button>
   </div>
 
   
