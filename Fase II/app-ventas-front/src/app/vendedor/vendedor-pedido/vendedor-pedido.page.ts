@@ -35,6 +35,11 @@ export class VendedorPedidoPage implements OnInit {
     })
   }
 
+  /*Editar(pedido:Pedido):void{
+    localStorage.setItem("id_pedido", pedido.id_pedido.toString());
+    this.router.navigate(["vendedor-pedido-editar"]);
+  }*/
+
   verDetalle(pedido:Pedido):void{
     localStorage.setItem("id_pedido", pedido.id_pedido.toString());
     this.router.navigate(["vendedor-pedido-detalle"]);

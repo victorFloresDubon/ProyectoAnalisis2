@@ -34,6 +34,7 @@ export class VendedorTiendaPage implements OnInit {
     this.service.deleteTienda(tienda)
     .subscribe(data=>{
       this.tiendas=this.tiendas.filter(p=>p!==tienda);
+      alert("Se eliminó con Exito...!!!");
       this.router.navigate(["vendedor-tienda"]);
     })
   }

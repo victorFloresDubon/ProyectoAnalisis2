@@ -37,11 +37,15 @@ export class VendedorTiendaDetallePage implements OnInit {
         this.modelCategoriaNegocio=data;
       })
     })
+    
+    
   }
 
   Borrar(tienda:Tienda){
     this.serviceTienda.deleteTienda(tienda)
     .subscribe(data=>{
+      alert("Se borró con Exito...!!!");
+      //this.tiendas=this.tiendas.filter(p=>p!==tienda);
       this.router.navigate(["vendedor-tienda"]);
     })
   }

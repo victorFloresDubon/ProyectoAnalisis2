@@ -34,6 +34,7 @@ export class VendedorPedidoEditarPage implements OnInit {
     this.servicePedido.updatePedido(pedido)
     .subscribe(data=>{
       this.modelPedido=data;
+      alert("Se Actualizo con Exito...!!!");
       this.router.navigate(["vendedor-pedido"]);
     })
   }

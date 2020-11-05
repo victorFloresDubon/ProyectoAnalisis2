@@ -43,6 +43,7 @@ export class ClientePedidoPage implements OnInit {
     this.service.deletePedido(pedido)
     .subscribe(data=>{
       this.pedidos=this.pedidos.filter(p=>p!==pedido);
+      alert("Se eliminó con Exito...!!!");
       this.router.navigate(["cliente-pedido"]);
     })
   }

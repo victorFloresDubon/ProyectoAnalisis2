@@ -49,6 +49,7 @@ export class VendedorTiendaEditarPage implements OnInit {
     this.serviceTienda.updateTienda(tienda)
     .subscribe(data=>{
       this.modelTienda=data;
+      alert("Se edito con Exito...!!!");
       this.router.navigate(["vendedor-tienda"]);
     })
   }

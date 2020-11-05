@@ -57,6 +57,20 @@ export class ClientePedidoDetallePage implements OnInit {
     })
   }
 
+  /*Borrar(pedido:Pedido){
+    this.servicePedido.deletePedido(pedido)
+    .subscribe(data=>{
+      //this.productosVector=this.productosVector.filter(p=>p!==producto);
+      alert("Se borró con éxito");
+      this.router.navigate(["cliente-pedido"]);
+    })
+  }
+
+  Editar(pedido:Pedido):void{
+    localStorage.setItem("id_pedido", pedido.id_pedido.toString());
+    this.router.navigate(["cliente-pedido-editar"]);
+  }*/
+
   Volver(){
     this.router.navigate(["cliente-pedido"]);
   }

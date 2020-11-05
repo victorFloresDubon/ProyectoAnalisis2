@@ -29,6 +29,7 @@ export class VendedorProductoEditarPage implements OnInit {
     this.service.updateProducto(producto)
     .subscribe(data=>{
       this.productos=data;
+      alert("Se Actualizo con Exito...!!!");
       this.router.navigate(["vendedor-producto"]);
     })
   }
