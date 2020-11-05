@@ -43,6 +43,7 @@ export class ClienteProductoAgregarPage implements OnInit {
     pedido.id_usuario = +id_usuario;
     this.servicePedido.createPedido(pedido)
     .subscribe(data=>{
+      alert("Se agrego con Exito...!!!");
       this.router.navigate(["cliente-pedido"]);
     })
   }

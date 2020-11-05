@@ -26,6 +26,7 @@ export class VendedorProductoAgregarPage implements OnInit {
     producto.id_tienda = +id_tienda;
     this.service.createProducto(producto)
     .subscribe(data=>{
+      alert("Se agrego con Exito...!!!");
       this.router.navigate(["vendedor-producto"]);
     })
   }

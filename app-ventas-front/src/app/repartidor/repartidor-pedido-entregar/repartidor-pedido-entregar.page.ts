@@ -34,6 +34,7 @@ export class RepartidorPedidoEntregarPage implements OnInit {
     this.servicePedido.updatePedido(pedido)
     .subscribe(data=>{
       this.modelPedido=data;
+      alert("Se Actualizo con Exito...!!!");
       this.router.navigate(["repartidor-pedido-detalle"]);
     })
   }

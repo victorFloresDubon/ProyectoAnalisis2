@@ -43,6 +43,7 @@ export class VendedorProductoDetallePage implements OnInit {
     this.service.deleteProducto(producto)
     .subscribe(data=>{
       //this.productosVector=this.productosVector.filter(p=>p!==producto);
+      alert("Se borró con éxito");
       this.router.navigate(["vendedor-producto"]);
     })
   }
