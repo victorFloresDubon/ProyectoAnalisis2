@@ -1,0 +1,44 @@
+<ion-content [fullscreen]="true">
+  
+  <ion-header>
+    <ion-toolbar color="white">
+      <ion-buttons slot="start">
+        <ion-button (click)="Volver()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>
+        Detalle de Tienda
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <img src="{{modelTienda.foto}}" />
+    <ion-card-header>
+      <ion-card-title>{{modelTienda.nombre}}</ion-card-title>
+
+      <!--<ion-card-subtitle>Categoría:
+          <div *ngFor="let categorianegocio of categorianegocios">
+            <div *ngIf="categorianegocio.id_categoria == modelTienda.id_categoria">
+            {{ categorianegocio.des_categoria }}
+            </div>
+          </div>
+      </ion-card-subtitle>-->
+      <ion-card-subtitle>Categoría: {{modelCategoriaNegocio.des_categoria}}</ion-card-subtitle>
+      <ion-card-subtitle>Dirección: {{modelTienda.direccion}}</ion-card-subtitle>
+      <ion-card-subtitle>Teléfono: {{modelTienda.telefono}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="full" color="warning" (click)="Editar(modelTienda)">Editar</ion-button>
+  <ion-button expand="full" color="danger" (click)="Borrar(modelTienda)">Borrar</ion-button>
+  <ion-button expand="full" color="success" (click)="Producto(modelTienda)">Productos</ion-button>
+
+</ion-content>

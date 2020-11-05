@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true">
+
+  <ion-header>
+    <ion-toolbar color="white">
+      <ion-buttons slot="start">
+        <ion-button (click)="Volver()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>
+        Editar Producto
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-item>
+    <ion-label>Nombre: </ion-label>
+    <ion-input type="text" [(ngModel)]="productos.nombre" name="nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Precio: </ion-label>
+    <ion-input type="text" [(ngModel)]="productos.precio" name="precio"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Foto: </ion-label>
+    <ion-input type="text" [(ngModel)]="productos.foto" name="foto"></ion-input>
+  </ion-item>
+  <ion-button expand="full" color="secondary" (click)="Actualizar(productos)">Actualizar</ion-button>
+
+</ion-content>

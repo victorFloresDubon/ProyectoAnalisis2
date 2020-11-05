@@ -1,0 +1,7 @@
+{
+  "name": "app-ventas-front",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

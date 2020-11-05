@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true">
+
+  <ion-header>
+    <ion-toolbar color="white">
+      <ion-buttons slot="start">
+        <ion-button (click)="Volver()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>
+        Editar Tienda
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-item>
+    <label for="">Categoria:</label><br>
+    <select name="id_categoria" [(ngModel)]="modelTienda.id_categoria">
+        <option *ngFor="let categorianegocio of categorianegocios" [value]="categorianegocio.id_categoria">{{categorianegocio.des_categoria}}</option>
+    </select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Nombre: </ion-label>
+    <ion-input type="text" [(ngModel)]="modelTienda.nombre" name="nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Dirección: </ion-label>
+    <ion-input type="text" [(ngModel)]="modelTienda.direccion" name="direccion"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Teléfono: </ion-label>
+    <ion-input type="text" [(ngModel)]="modelTienda.telefono" name="telefono"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Foto: </ion-label>
+    <ion-input type="text" [(ngModel)]="modelTienda.foto" name="foto"></ion-input>
+  </ion-item>
+    <ion-button expand="full" color="secondary" (click)="Actualizar(modelTienda)">Actualizar</ion-button>
+
+
+
+</ion-content>

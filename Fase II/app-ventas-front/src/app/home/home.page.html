@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+    <img src="assets/logo.png" alt="">
+    <br>
+    <br>
+    <strong>Bienvenido</strong>
+
+    
+
+  <ion-item>
+    <ion-label>Correo: </ion-label>
+    <ion-input type="email" name="correo" [(ngModel)] = "modelUsuario.correo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Contraseña: </ion-label>
+    <ion-input type="password" name="contrasenia" [(ngModel)] = "modelUsuario.contrasenia"></ion-input>
+  </ion-item>
+  <ion-button expand="block" color="danger" (click)="Ingresar(modelUsuario)">Ingresar</ion-button>
+  o
+  <br>
+  <ion-button expand="block" color="dark" (click)="Registrar()">Registrarme</ion-button>
+  </div>
+
+  
+
+</ion-content>

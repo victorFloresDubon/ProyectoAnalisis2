@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true">
+
+  <ion-header>
+    <ion-toolbar color="white">
+      <ion-buttons slot="start">
+        <ion-button (click)="Volver()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>
+        Agregar Producto
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre: </ion-label>
+        <ion-input [(ngModel)]="modelProducto.nombre" type="text" name="nombre" class="form-control"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Precio: </ion-label>
+        <ion-input [(ngModel)]="modelProducto.precio" type="text" name="precio" class="form-control"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Foto: </ion-label>
+        <ion-input [(ngModel)]="modelProducto.foto" type="text" name="foto" class="form-control"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" color="secondary" (click)="Guardar(modelProducto)">Guardar</ion-button>
+
+</ion-content>
