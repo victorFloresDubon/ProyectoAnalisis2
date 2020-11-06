@@ -27,7 +27,6 @@ public class Producto {
 
 	@Column(name = "foto")
 	private String foto;
-
 	
 	public int getId_producto() {
 		return id_producto;

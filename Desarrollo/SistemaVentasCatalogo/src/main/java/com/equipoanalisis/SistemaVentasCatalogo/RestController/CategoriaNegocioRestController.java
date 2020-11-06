@@ -30,7 +30,7 @@ public class CategoriaNegocioRestController {
 	private CategoriaNegocioRepository catRepo;
 	
     @GetMapping
-    public List<CategoriaNegocio> getCategorias() {
+    public List<CategoriaNegocio> getCategoria() {
         return catRepo.findAll();
     }
     

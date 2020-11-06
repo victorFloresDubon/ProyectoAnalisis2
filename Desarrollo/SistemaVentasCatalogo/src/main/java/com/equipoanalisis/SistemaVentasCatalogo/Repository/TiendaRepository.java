@@ -9,8 +9,11 @@ import com.equipoanalisis.SistemaVentasCatalogo.entity.Tienda;
 
 @Repository
 public interface TiendaRepository  extends JpaRepository<Tienda, Integer>{
-	
-	@Query("SELECT tie FROM Tienda tie WHERE tie.id_usuario = ?1")
-	List<Tienda> tiendasPorUsuario(int id_usuario);
 
+	@Query("SELECT tie FROM Tienda tie WHERE tie.id_usuario = ?1")
+	List<Tienda> buscarUsuario(int id_usuario);
+	
+	@Query("SELECT tie FROM Tienda tie WHERE tie.id_categoria = ?1")
+	List<Tienda> buscarCategoria(int id_categoria);
+	
 }

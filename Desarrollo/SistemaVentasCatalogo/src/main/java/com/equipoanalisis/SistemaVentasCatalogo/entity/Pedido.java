@@ -22,17 +22,20 @@ public class Pedido {
 	@Column(name = "id_tienda")
 	private int id_tienda;
 	
-	@Column(name = "esdomicilio")
-	private int esdomicilio;
-	
 	@Column(name = "listo")
 	private int listo;
 	
 	@Column(name = "entregado")
 	private int entregado;
-
+	
 	@Column(name = "id_usuario_repartidor")
 	private int id_usuario_repartidor;
+	
+	@Column(name = "esdomicilio")
+	private int esdomicilio;
+	
+	@Column(name = "id_producto")
+	private int id_producto;
 
 	public int getId_pedido() {
 		return id_pedido;
@@ -62,10 +65,6 @@ public class Pedido {
 		return esdomicilio;
 	}
 
-	public void setEsdomicilio(int esdomicilio) {
-		this.esdomicilio = esdomicilio;
-	}
-
 	public int getListo() {
 		return listo;
 	}
@@ -81,7 +80,7 @@ public class Pedido {
 	public void setEntregado(int entregado) {
 		this.entregado = entregado;
 	}
-
+	
 	public int getId_usuario_repartidor() {
 		return id_usuario_repartidor;
 	}
@@ -89,7 +88,19 @@ public class Pedido {
 	public void setId_usuario_repartidor(int id_usuario_repartidor) {
 		this.id_usuario_repartidor = id_usuario_repartidor;
 	}
-	
 
+	public void setEsdomicilio(int esdomicilio) {
+		this.esdomicilio = esdomicilio;
+	}
+
+	public int getId_producto() {
+		return id_producto;
+	}
+
+	public void setId_producto(int id_producto) {
+		this.id_producto = id_producto;
+	}
+	
+	
 	
 }

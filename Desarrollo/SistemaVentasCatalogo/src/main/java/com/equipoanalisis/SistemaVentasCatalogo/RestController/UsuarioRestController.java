@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.equipoanalisis.SistemaVentasCatalogo.Repository.UsuarioRepository;
 import com.equipoanalisis.SistemaVentasCatalogo.entity.Usuario;
 
-
 @RestController
 @RequestMapping("usuario")
 @CrossOrigin("*")
@@ -34,7 +33,17 @@ public class UsuarioRestController {
         return usrRepo.findAll();
     }
     
+    @GetMapping(value="/repartidor")
+    public List <Usuario> buscarRepartidores(){
+    	return usrRepo.buscarRepartidores();
+    }
 
+    @GetMapping("/buscarlogin/{correo}/{contrasenia}")
+    public Usuario buscarLogin(@PathVariable String correo, @PathVariable String contrasenia){
+    	return usrRepo.buscarLogin(correo, contrasenia);
+    }
+
+    
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getUsuarioById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
@@ -43,12 +52,6 @@ public class UsuarioRestController {
         return ResponseEntity.ok().body(usr);
     }
     
-    @GetMapping(value="/obtieneDatos/{usr}/{contrasenia}")
-    public List<Usuario> getUsuarioByUserandPsw(@PathVariable String usr, @PathVariable String contrasenia)
-         {
-    	return usrRepo.buscarDatosUsuario(usr, contrasenia);
-         }
- 	
 
     @PostMapping
     public Usuario createUsuario(@Validated @RequestBody Usuario usr) {
@@ -81,6 +84,7 @@ public class UsuarioRestController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+    
     
     
 }

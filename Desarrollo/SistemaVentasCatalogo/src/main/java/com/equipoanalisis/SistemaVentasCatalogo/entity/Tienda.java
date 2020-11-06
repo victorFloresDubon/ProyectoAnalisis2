@@ -17,10 +17,10 @@ public class Tienda {
 	private int id_tienda;
 	
 	@Column(name = "id_categoria")
-	private Long id_categoria;
+	private int id_categoria;
 
 	@Column(name = "id_usuario")
-	private Long id_usuario;
+	private int id_usuario;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -42,19 +42,19 @@ public class Tienda {
 		this.id_tienda = id_tienda;
 	}
 
-	public Long getId_categoria() {
+	public int getId_categoria() {
 		return id_categoria;
 	}
 
-	public void setId_categoria(Long id_categoria) {
+	public void setId_categoria(int id_categoria) {
 		this.id_categoria = id_categoria;
 	}
 
-	public Long getId_usuario() {
+	public int getId_usuario() {
 		return id_usuario;
 	}
 
-	public void setId_usuario(Long id_usuario) {
+	public void setId_usuario(int id_usuario) {
 		this.id_usuario = id_usuario;
 	}
 

@@ -34,10 +34,9 @@ public class ProductoRestController {
     }
     
     @GetMapping(value="/productoPorTienda/{id_tienda}")
-    public List<Producto> getUsuarioByUserandPsw(@PathVariable int id_tienda)
-         {
+    public List<Producto> productosPorTienda(@PathVariable int id_tienda){
     	return prodRepo.productosPorTienda(id_tienda);
-         }
+    }
     
     @GetMapping("/{id}")
     public ResponseEntity<Producto> getProductoById(@PathVariable(value = "id") int id)
@@ -77,6 +76,8 @@ public class ProductoRestController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+    
+    
 
 	
 }

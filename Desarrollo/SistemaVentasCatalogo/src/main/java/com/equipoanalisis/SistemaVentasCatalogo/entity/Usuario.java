@@ -18,7 +18,7 @@ public class Usuario {
 	private int id_usuario;
 	
 	@Column(name = "id_rol")
-	private Long id_rol;
+	private int id_rol;
 
 	@Column(name = "nombre")
 	private String nombre;
@@ -43,11 +43,11 @@ public class Usuario {
 		this.id_usuario = id_usuario;
 	}
 
-	public Long getId_rol() {
+	public int getId_rol() {
 		return id_rol;
 	}
 
-	public void setId_rol(Long id_rol) {
+	public void setId_rol(int id_rol) {
 		this.id_rol = id_rol;
 	}
 

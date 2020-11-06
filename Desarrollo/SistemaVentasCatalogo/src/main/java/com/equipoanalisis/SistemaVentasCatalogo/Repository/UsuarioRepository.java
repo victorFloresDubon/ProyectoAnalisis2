@@ -13,9 +13,10 @@ import com.equipoanalisis.SistemaVentasCatalogo.entity.Usuario;
 @Repository
 public interface UsuarioRepository  extends JpaRepository<Usuario, Integer>{
 
-	@Query("SELECT usr \r\n"
-			+ "FROM Usuario usr \r\n"
-			+ "WHERE usr.correo = ?1 and usr.contrasenia = ?2")
-	List<Usuario> buscarDatosUsuario(String usuario, String contrasenia);
+	@Query("SELECT usr FROM Usuario usr WHERE usr.correo = ?1 and usr.contrasenia = ?2")
+	Usuario buscarLogin(String correo, String contrasenia);
+	
+	@Query("SELECT usr FROM Usuario usr WHERE usr.id_rol = 3")
+	List <Usuario> buscarRepartidores();
 
 }

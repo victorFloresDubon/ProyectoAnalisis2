@@ -21,7 +21,7 @@ import com.equipoanalisis.SistemaVentasCatalogo.Repository.TiendaRepository;
 import com.equipoanalisis.SistemaVentasCatalogo.entity.Tienda;
 
 @RestController
-@RequestMapping("/tienda")
+@RequestMapping("tienda")
 @CrossOrigin("*")
 public class TiendaRestController{
 
@@ -33,12 +33,6 @@ public class TiendaRestController{
         return tiendaRepo.findAll();
     }
     
-    @GetMapping(value="/tiendaPorUsuario/{id_usuario}")
-    public List<Tienda> getTiendabyUser(@PathVariable int id_usuario)
-         {
-    	return tiendaRepo.tiendasPorUsuario(id_usuario);
-         }
-  
     @GetMapping("/{id}")
     public ResponseEntity<Tienda> getTiendaById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
@@ -79,4 +73,16 @@ public class TiendaRestController{
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+    
+    //Querys
+    @GetMapping(value="/buscarusuario/{id_usuario}")
+    public List<Tienda> buscarUsuario(@PathVariable int id_usuario){
+    	return tiendaRepo.buscarUsuario(id_usuario);
+    }
+    
+    @GetMapping(value="/buscarcategoria/{id_categoria}")
+    public List<Tienda> buscarCategoria(@PathVariable int id_categoria){
+    	return tiendaRepo.buscarCategoria(id_categoria);
+    }
+    
 }
