@@ -31,6 +31,11 @@
               <ion-img [src]="producto.foto"></ion-img>
             </ion-avatar>
             <ion-label>{{ producto.nombre }}</ion-label>
+
+            <div *ngIf="pedido.entregado == 1;then content else other_content">here is ignored</div>    
+            <ng-template #content><ion-text color="primary">Recibido</ion-text></ng-template>
+            <ng-template #other_content><ion-text color="danger">No recibido</ion-text></ng-template>
+
           </div>
         </div>
       </ion-item>

@@ -8,7 +8,7 @@ import { Pedido } from '../modelo/Pedido';
 export class PedidoService {
 
   constructor(private http:HttpClient) { }
-
+//url del back api rest con sus respectivos metodos
   url='http://localhost:8080/pedido';
 
   getPedidos(){

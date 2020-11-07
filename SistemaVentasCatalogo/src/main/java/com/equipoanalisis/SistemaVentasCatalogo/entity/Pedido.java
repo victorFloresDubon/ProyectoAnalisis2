@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+//aqui se crean las entidades creadas en la base de datos
 @Entity
 @Table(name="pedido")
 public class Pedido {

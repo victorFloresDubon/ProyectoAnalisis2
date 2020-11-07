@@ -9,7 +9,7 @@ DROP TABLE Menu CASCADE ;
 DROP TABLE Menu_Rol CASCADE ;
 DROP TABLE Producto_Tienda CASCADE ;
 DROP TABLE Parametro CASCADE ;
-
+--creamos las tablas
 CREATE TABLE Usuario (
     id_usuario SERIAL NOT NULL,
     id_rol INTEGER NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE Parametro (
     cuota_fija NUMERIC(12,2) NOT NULL,
     monto_entrega NUMERIC(12,2) NOT NULL
 );
-
+--creamos las llaves foraneas
 alter table Usuario add constraint "usuario_rol_FK" foreign key (id_rol) references Rol (id_rol);
 
 alter table Pedido add constraint "usuario_pedido_FK" foreign key (id_usuario) references Usuario (id_usuario) on delete cascade;
@@ -116,12 +116,8 @@ alter table Producto_Tienda add constraint "producto_tienda_id_tienda_FK" foreig
 
 alter table Tienda add constraint "tienda_categoria_FK" foreign key(id_categoria) references Categoria_Negocio (id_categoria);
 
-alter table Menu_Rol add constraint "menu_rol_menu_FK" foreign key(id_menu) references Menu (id_menu);
-
-alter table Menu_Rol add constraint "menu_rol_rol_FK" foreign key(id_rol) references Rol (id_rol);
-
 alter table Tienda add constraint "tienda_usuario_FK" foreign key(id_usuario) references Usuario (id_usuario);
-
+--creamos los triggers
 create function actualizapedidodetalle() returns trigger
 as
 $$

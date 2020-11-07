@@ -28,29 +28,34 @@ public class PedidoRestController {
 	@Autowired
 	private PedidoRepository pedidoRepo;
 	
+	//Se listan todos los pedidos realizados
     @GetMapping
     public List<Pedido> getPedido() {
         return pedidoRepo.findAll();
     }
     
+    //se llaman a los pedidos realizados por cierto usuario
     @GetMapping("/pedidosPorCliente/{id_usuario}")
     public List<Pedido> getpedidosPorCliente(@PathVariable int id_usuario)
          {
     	return pedidoRepo.pedidosPorCliente(id_usuario);
          }
  
+    //se listan los pedidos asignados a cierto repartidor
     @GetMapping("/pedidosPorRepartidor/{id_usuario_repartidor}")
     public List<Pedido> getpedidosPorRepartidor(@PathVariable int id_usuario_repartidor)
          {
     	return pedidoRepo.pedidosPorRepartidor(id_usuario_repartidor);
          }
     
+    //se listan los pedidos asignados a cierto vendedor segun sus tiendas y productos
     @GetMapping("/pedidosPorVendedor/{id_usuario}")
     public List<Pedido> getpedidosPorVendedor(@PathVariable int id_usuario)
          {
     	return pedidoRepo.pedidosPorVendedor(id_usuario);
          }
     
+    //se listan los pedidos segun el id del pedido
     @GetMapping("/{id}")
     public ResponseEntity<Pedido> getPedidoById(@PathVariable(value = "id") int id)
         throws ResourceNotFoundException {
@@ -59,11 +64,13 @@ public class PedidoRestController {
         return ResponseEntity.ok().body(pedido);
     }
     
+    //sirve para crear el pedido
     @PostMapping
     public Pedido createPedido(@Validated @RequestBody Pedido pedido) {
         return pedidoRepo.save(pedido);
     }
 	
+    //sirve para editar el pedido
     @PutMapping("/{id}")
     public ResponseEntity<Pedido> updatePedido(@PathVariable(value = "id") int id,
          @Validated @RequestBody Pedido pedidoDetalle) throws ResourceNotFoundException {
@@ -80,6 +87,7 @@ public class PedidoRestController {
         return ResponseEntity.ok(updatePedido);
     }
     
+    //sirve para borrar un pedido segun su id
     @DeleteMapping("/{id}")
     public Map<String, Boolean> deletePedido(@PathVariable(value = "id") int id)
          throws ResourceNotFoundException {

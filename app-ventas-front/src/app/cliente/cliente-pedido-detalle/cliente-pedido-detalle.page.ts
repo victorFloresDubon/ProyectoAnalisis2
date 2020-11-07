@@ -57,7 +57,7 @@ export class ClientePedidoDetallePage implements OnInit {
     })
   }
 
-  /*Borrar(pedido:Pedido){
+  Borrar(pedido:Pedido){
     this.servicePedido.deletePedido(pedido)
     .subscribe(data=>{
       //this.productosVector=this.productosVector.filter(p=>p!==producto);
@@ -66,10 +66,9 @@ export class ClientePedidoDetallePage implements OnInit {
     })
   }
 
-  Editar(pedido:Pedido):void{
-    localStorage.setItem("id_pedido", pedido.id_pedido.toString());
+  Entregar(pedido:Pedido){
     this.router.navigate(["cliente-pedido-editar"]);
-  }*/
+  }
 
   Volver(){
     this.router.navigate(["cliente-pedido"]);

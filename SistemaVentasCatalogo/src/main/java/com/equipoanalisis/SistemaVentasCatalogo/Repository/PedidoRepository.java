@@ -10,6 +10,7 @@ import com.equipoanalisis.SistemaVentasCatalogo.entity.Pedido;
 @Repository
 public interface PedidoRepository  extends JpaRepository<Pedido, Integer>{
 	
+	//Aqui se realizan consultas personalizadas en caso se necesite
 	@Query("SELECT ped FROM Pedido ped WHERE ped.id_usuario = ?1")
 	List<Pedido> pedidosPorCliente(int id_usuario);
 

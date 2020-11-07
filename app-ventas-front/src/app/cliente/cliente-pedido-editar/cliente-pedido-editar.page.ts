@@ -4,11 +4,11 @@ import { PedidoService } from '../../services/pedido.service'
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-repartidor-pedido-entregar',
-  templateUrl: './repartidor-pedido-entregar.page.html',
-  styleUrls: ['./repartidor-pedido-entregar.page.scss'],
+  selector: 'app-cliente-pedido-editar',
+  templateUrl: './cliente-pedido-editar.page.html',
+  styleUrls: ['./cliente-pedido-editar.page.scss'],
 })
-export class RepartidorPedidoEntregarPage implements OnInit {
+export class ClientePedidoEditarPage implements OnInit {
 
   pedidos:Pedido[];
   modelPedido = new Pedido();
@@ -35,12 +35,12 @@ export class RepartidorPedidoEntregarPage implements OnInit {
     .subscribe(data=>{
       this.modelPedido=data;
       alert("Se Actualizo con Exito...!!!");
-      this.router.navigate(["repartidor-pedido"]);
+      this.router.navigate(["cliente-pedido"]);
     })
   }
 
   Volver(){
-    this.router.navigate(["repartidor-pedido"]);
+    this.router.navigate(["cliente-pedido"]);
   }
 
 }

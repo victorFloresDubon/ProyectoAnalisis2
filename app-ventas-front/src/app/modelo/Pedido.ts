@@ -9,3 +9,4 @@ export class Pedido{
     esdomicilio:number;
     id_producto:number;
 }
+//se llaman a los modelos de la bd que vallamos a necesitar

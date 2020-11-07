@@ -23,7 +23,11 @@
     <ion-card-header>
       <ion-card-title>{{modelProducto.nombre}}</ion-card-title>
       <ion-card-subtitle>Tienda: {{modelTienda.nombre}}</ion-card-subtitle>
-      <ion-card-subtitle>Precio: {{modelProducto.precio}}</ion-card-subtitle>
+      
+      <div *ngIf="modelPedido.esdomicilio == 1;then content else other_content">here is ignored</div>    
+      <ng-template #content>Precio: Q{{modelProducto.precio + 5.10}}</ng-template>
+      <ng-template #other_content>Precio: Q{{modelProducto.precio + 0.10}}</ng-template>
+
       <ion-card-subtitle [ngSwitch]="modelPedido.listo">
         <div *ngSwitchCase="0">Listo: No</div>
         <div *ngSwitchCase="1">Listo: Si</div>
@@ -44,7 +48,11 @@
     <ion-card-content>
     </ion-card-content>
   </ion-card>
-  <!--<ion-button expand="full" color="warning" (click)="Editar(modelProducto)">Editar</ion-button>
-  <ion-button expand="full" color="danger" (click)="Borrar(modelProducto)">Borrar</ion-button>-->
+
+  <div *ngIf="modelPedido.esdomicilio == 1;then content2 else other_content2">here is ignored</div>    
+      <ng-template #content2></ng-template>
+      <ng-template #other_content2><ion-button expand="full" color="danger" (click)="Entregar(modelPedido)">Recibir</ion-button></ng-template>
+  
+  <!--<ion-button expand="full" color="danger" (click)="Borrar(modelPedido)">Borrar</ion-button>-->
 
 </ion-content>

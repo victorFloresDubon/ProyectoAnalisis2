@@ -22,10 +22,16 @@
       <ion-item *ngFor="let pedido of pedidos" (click)="verDetalle(pedido)">
         <div *ngFor="let producto of productos">
           <div *ngIf="pedido.id_producto == producto.id_producto">
+
             <ion-avatar slot="start">
               <ion-img [src]="producto.foto"></ion-img>
             </ion-avatar>
             <ion-label>{{ producto.nombre }}</ion-label>
+
+            <div *ngIf="pedido.listo == 1;then content else other_content">here is ignored</div>    
+            <ng-template #content><ion-text color="primary">Preparado</ion-text></ng-template>
+            <ng-template #other_content><ion-text color="danger">No preparado</ion-text></ng-template>
+
           </div>
         </div>
       </ion-item>

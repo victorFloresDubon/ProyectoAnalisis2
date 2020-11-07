@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu-cliente.component.scss'],
 })
 export class MenuClienteComponent implements OnInit {
-
+//menu personalizado para cada rol
   constructor(private router:Router) { }
   
   Inicio(){
